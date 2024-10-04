@@ -24,7 +24,7 @@
   },
   "work": [
     {
-      "name": "Pablo Dylan",
+      "name": "Team by Pablo Dylan",
       "position": "Machine Learning Intern (Los Angeles)",
       "startDate": "06/2024",
       "endDate": "08/2024",
@@ -47,8 +47,50 @@
     {
       "name": "Python",
       "level": "Proficient",
-      "icon": "fa-solid fa-hashtag",
-      "keywords": ["None yet"]
+      "icon": "fa-brands fa-python",
+      "keywords": ["6+ years of experience", "Extremely comfortable", "Mulltiparadime approach"]
+    },
+    {
+      "name": "Rust",
+      "level": "Intermediate",
+      "icon": "fa-solid fa-gear",
+      "keywords": ["Deployed simple servers, programmed Raspberry Pi Nanos, and wrote scripts for automations"]
+    },
+    {
+      "name": "Kotlin",
+      "level": "Intermediate",
+      "icon": "fa-solid fa-code",
+      "keywords": ["Created small applications and wrote scripts exploring Kotlin's capabilities"]
+    },
+    {
+      "name": "Python ML Libraries",
+      "level": "Proficient",
+      "icon": "fa-solid fa-chart-line",
+      "keywords": ["Extensively utilized libraries such as NumPy, Pandas, Scikit-learn, and Matplotlib for data analysis and visualization"]
+    },
+    {
+      "name": "TensorFlow",
+      "level": "Intermediate",
+      "icon": "fa-solid fa-brain",
+      "keywords": ["Implemented and designed multipe models for personal projects and for small teams"]
+    },
+    {
+      "name": "Git",
+      "level": "Proficient",
+      "icon": "fa-brands fa-git-alt",
+      "keywords": ["Comfortable and experienced with version control and collaboration"]
+    },
+    {
+      "name": "Docker",
+      "level": "Intermediate",
+      "icon": "fa-brands fa-docker",
+      "keywords": ["Adept at utilizing docker and leveraging containerization"]
+    },
+    {
+      "name": "Linux",
+      "level": "Proficient",
+      "icon": "fa-brands fa-linux",
+      "keywords": ["Exclusively used Linux for all school work, projects, and embedded applications"]
     }
   ],
   "languages": [
@@ -65,16 +107,24 @@
   ],
   "interests": [
     {
-      "name": "Todos",
-      "icon": "fa-solid fa-tag",
-      "keywords": [
-        "Quantum Mechanics",
-        "Quantum Computing",
-        "Quantum Information",
-        "Quantum Cryptography",
-        "Quantum Communication",
-        "Quantum Teleportation"
-      ]
+      "name": "Private Aviation",
+      "icon": "fa-solid fa-plane",
+      "keywords": ["Following in the footsteps of my father who is a private pilot and aircraft manufacturer, I am eager to fly and plan on incorporating my aviation knowledge into my career"]
+    },
+    {
+      "name": "Ice Hockey",
+      "icon": "fa-solid fa-hockey-puck",
+      "keywords": ["Dedicated player and enthusiast, competing at the highest levels of ice hockey available to me"]
+    },
+    {
+      "name": "Fitness",
+      "icon": "fa-solid fa-dumbbell",
+      "keywords": ["I am dedicated to maintaining my physical health and well-being, and I am committed to continuing my fitness journey"]
+    },
+    {
+      "name": "Investing",
+      "icon": "fa-solid fa-money-bill-transfer",
+      "keywords": ["I have a passion for exploring strategies in derivatives, options, futures,and cryptocurrencies to maximize returns on investments"]
     }
   ]
 }
