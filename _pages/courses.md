@@ -44,7 +44,7 @@ nav_order: 6
 
 ## semester 6 (expected)
 
-- **Bachelor Thesis**
+- **Bachelor Thesis (Data-flow framework for complex machine learning pipelines)**
 - **Statistical Machine Learning**
 - **2 more yet to be decided**
 
