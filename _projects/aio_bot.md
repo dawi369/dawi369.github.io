@@ -6,3 +6,5 @@ img: assets/img/instabot.jpg
 importance: 3
 category: fun
 ---
+
+[check out the project](https://github.com/dawi369/Instagram-AIO-Bot)
