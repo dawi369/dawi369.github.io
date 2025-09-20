@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://daviderwin.me"),
   title: "David Erwin",
   description:
     "The personal website and blog of David Erwin, a software engineer.",
