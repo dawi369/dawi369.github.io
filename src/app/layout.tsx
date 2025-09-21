@@ -57,6 +57,9 @@ export const metadata: Metadata = {
     creator: "@devDawi",
     images: ["https://daviderwin.me/assets/images/chilling.png"], // Must be an absolute URL
   },
+  icons: {
+    icon: "/assets/images/chilling.png",
+  },
 };
 
 export default function RootLayout({

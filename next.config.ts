@@ -6,7 +6,6 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true, // Required for static export
   },
-  // swcMinify: true, // Recommended for faster minification with Webpack
   reactStrictMode: true, // Recommended for better React debugging
 };
 
