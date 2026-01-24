@@ -1,11 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
-import ThemeScript from '@/components/theme/ThemeScript';
-import { ThemeProvider } from '@/context/ThemeContext';
-import Navbar from '@/components/common/Navbar';
-import Footer from '@/components/common/Footer';
-import { Sidebar } from '@/components/Sidebar';
 import './globals.css';
 
 const geistSans = Geist({
@@ -107,28 +102,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sfMono.variable} antialiased min-h-screen flex flex-col font-mono text-gray-900 bg-white`}
+        className={`${sfMono.variable} font-mono antialiased bg-white text-gray-900`}
       >
-        {/* The Gallery Layout */}
-        <div className="flex-1 grid grid-cols-[15%_1fr_15%] w-full h-screen overflow-hidden">
-          {/* Left Gutter (Testing Border) */}
-          <div className="border-r border-dashed border-red-500/20 h-full hidden md:block" />
+        <div className="grid grid-cols-[15%_1fr_15%] min-h-screen">
+          {/* Left Margin */}
+          <div className="hidden md:block" />
 
-          {/* Center Stage */}
-          <div className="flex flex-row h-full overflow-hidden relative">
-            {/* Sidebar Navigation (IDE Style) */}
-            <aside className="w-64 shrink-0 h-full border-r border-gray-100 overflow-y-auto bg-gray-50/50">
-              <Sidebar />
-            </aside>
+          {/* Content */}
+          <main className="px-4 md:px-8">{children}</main>
 
-            {/* Main Content (The Art) */}
-            <main className="flex-1 h-full overflow-y-auto p-8 md:p-12 relative">
-              {children}
-            </main>
-          </div>
-
-          {/* Right Gutter (Testing Border) */}
-          <div className="border-l border-dashed border-red-500/20 h-full hidden md:block" />
+          {/* Right Margin */}
+          <div className="hidden md:block" />
         </div>
       </body>
     </html>
