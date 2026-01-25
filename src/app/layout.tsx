@@ -104,7 +104,7 @@ export default function RootLayout({
       <body
         className={`${sfMono.variable} font-mono antialiased bg-white text-gray-900`}
       >
-        <div className="grid grid-cols-[15%_1fr_15%] min-h-screen">
+        <div className="md:grid md:grid-cols-[15%_1fr_15%] min-h-screen">
           {/* Left Margin */}
           <div className="hidden md:block" />
 
