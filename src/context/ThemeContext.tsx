@@ -30,7 +30,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
       const initial: Theme = stored === "light" || stored === "dark" || stored === "system" ? (stored as Theme) : "dark";
       setTheme(initial);
       apply_theme_class(initial);
-    } catch (_) {
+    } catch {
       setTheme("dark");
       apply_theme_class("dark");
     }
@@ -40,7 +40,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ childre
   useEffect(() => {
     try {
       window.localStorage.setItem("theme", theme);
-    } catch (_) {
+    } catch {
       // ignore storage errors
     }
     apply_theme_class(theme);

@@ -28,7 +28,7 @@ export default function Home() {
               <br />
               <br />
               I always have a few projects in the works, they usually start out as a way to
-              learn things I've been nerd-sniped by, and sometimes they are good enough to stick.
+              learn things I&apos;ve been nerd-sniped by, and sometimes they are good enough to stick.
             </p>
           </div>
         </section>

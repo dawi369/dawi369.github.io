@@ -1,16 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 export function Pills() {
-  const [isMobile, setIsMobile] = useState(false);
-
   useEffect(() => {
-    // Check if mobile
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-
     // Smooth scroll-up animation on page load (mobile only)
     if (window.innerWidth < 768) {
       // Start at bottom
@@ -21,8 +14,6 @@ export function Pills() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
     }
-
-    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   const scrollToSection = (id: string) => {

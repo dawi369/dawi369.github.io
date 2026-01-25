@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+// import { Geist, Geist_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
 import './globals.css';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
+// const geistSans = Geist({
+//   variable: '--font-geist-sans',
+//   subsets: ['latin'],
+// });
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-});
+// const geistMono = Geist_Mono({
+//   variable: '--font-geist-mono',
+//   subsets: ['latin'],
+// });
 
 const sfMono = localFont({
   src: [
@@ -45,7 +45,7 @@ const sfMono = localFont({
   display: 'swap',
 });
 
-const title = 'David Erwin';
+const title = 'David William Erwin';
 const description = 'Software Engineer. Gallery of work.';
 const url = 'https://daviderwin.me';
 const image = 'https://daviderwin.me/assets/images/chilling.png';
