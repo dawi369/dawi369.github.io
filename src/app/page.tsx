@@ -7,7 +7,7 @@ export default function Home() {
 
       <div className="max-w-3xl mx-auto space-y-32 pb-[100vh] md:pb-0">
         {/* Me Section */}
-        <section id="me" className="min-h-screen flex flex-col justify-center">
+        <section id="me" className="md:min-h-screen flex flex-col md:justify-center pt-4 md:pt-0">
           <h1 className="text-4xl mb-4 font-semibold">Dawi</h1>
           <p className="text-lg text-gray-600 mb-2">David William Erwin</p>
           <p className="text-sm text-gray-500 mb-6">Founder & Software Engineer</p>
@@ -46,7 +46,7 @@ export default function Home() {
         {/* Work Section */}
         <section
           id="work"
-          className="min-h-screen flex flex-col justify-center"
+          className="md:min-h-screen flex flex-col md:justify-center"
         >
           <h2 className="text-2xl mb-6 font-semibold">Work</h2>
           <div className="space-y-6">
@@ -75,7 +75,7 @@ export default function Home() {
         {/* Education Section */}
         <section
           id="education"
-          className="min-h-screen flex flex-col justify-center"
+          className="md:min-h-screen flex flex-col md:justify-center"
         >
           <h2 className="text-2xl mb-6 font-semibold">Education</h2>
           <div className="space-y-6">

@@ -3,18 +3,8 @@
 import { useEffect } from 'react';
 
 export function Pills() {
-  useEffect(() => {
-    // Smooth scroll-up animation on page load (mobile only)
-    if (window.innerWidth < 768) {
-      // Start at bottom
-      window.scrollTo({ top: document.body.scrollHeight, behavior: 'auto' });
-      
-      // Smooth scroll to top after a brief delay
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }, 100);
-    }
-  }, []);
+  // Empty useEffect can be removed, but keeping for potential future use
+  useEffect(() => {}, []);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
