@@ -29,7 +29,10 @@ export function Pills() {
     const element = document.getElementById(id);
     if (!element) return;
 
-    if (isMobile) {
+    // Check mobile directly to avoid stale state
+    const isMobileView = window.innerWidth < 768;
+
+    if (isMobileView) {
       // Mobile: put title at top with offset for bottom nav
       const elementTop = element.getBoundingClientRect().top + window.scrollY;
       window.scrollTo({
@@ -57,25 +60,25 @@ export function Pills() {
       <nav className="fixed left-0 top-0 h-screen w-[15%] hidden md:flex items-center justify-center">
         <div className="flex flex-col gap-2 px-4 w-full">
           <button
-            onClick={() => scrollToCenter('me')}
+            onClick={() => scrollToSection('me')}
             className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
           >
             Me
           </button>
           <button
-            onClick={() => scrollToCenter('tech')}
+            onClick={() => scrollToSection('tech')}
             className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
           >
             Tech
           </button>
           <button
-            onClick={() => scrollToCenter('work')}
+            onClick={() => scrollToSection('work')}
             className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
           >
             Work
           </button>
           <button
-            onClick={() => scrollToCenter('education')}
+            onClick={() => scrollToSection('education')}
             className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
           >
             Education
@@ -141,25 +144,25 @@ export function Pills() {
           {/* Section Links */}
           <div className="flex gap-2 justify-center mb-3">
             <button
-              onClick={() => scrollToCenter('me')}
+              onClick={() => scrollToSection('me')}
               className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
             >
               Me
             </button>
             <button
-              onClick={() => scrollToCenter('tech')}
+              onClick={() => scrollToSection('tech')}
               className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
             >
               Tech
             </button>
             <button
-              onClick={() => scrollToCenter('work')}
+              onClick={() => scrollToSection('work')}
               className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
             >
               Work
             </button>
             <button
-              onClick={() => scrollToCenter('education')}
+              onClick={() => scrollToSection('education')}
               className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
             >
               Education

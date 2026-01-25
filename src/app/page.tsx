@@ -5,7 +5,7 @@ export default function Home() {
     <>
       <Pills />
 
-      <div className="max-w-3xl mx-auto space-y-32 pb-32 md:pb-0">
+      <div className="max-w-3xl mx-auto space-y-32 pb-[100vh] md:pb-0">
         {/* Me Section */}
         <section id="me" className="min-h-screen flex flex-col justify-center">
           <h1 className="text-4xl mb-4 font-semibold">Dawi</h1>
@@ -36,35 +36,10 @@ export default function Home() {
         {/* Tech Section */}
         <section id="tech" className="space-y-6">
           <h2 className="text-2xl font-semibold">Tech</h2>
-          <div className="space-y-4">
-            <div>
-              <p className="text-sm text-gray-500 mb-2">Languages</p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">Python</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">TypeScript</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">SQL</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">Java</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">C++</span>
-              </div>
-            </div>
-            <div>
-              <p className="text-sm text-gray-500 mb-2">Frameworks</p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">React</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">Next.js</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">FastAPI</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">Spark</span>
-              </div>
-            </div>
-            <div>
-              <p className="text-sm text-gray-500 mb-2">Infrastructure</p>
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">AWS</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">Docker</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">Kubernetes</span>
-                <span className="px-3 py-1 text-sm bg-gray-100 rounded-full">Kafka</span>
-              </div>
-            </div>
+          
+          {/* Interactive content placeholder */}
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 min-h-[300px] flex items-center justify-center">
+            <p className="text-gray-400 text-sm">Interactive playground coming soon...</p>
           </div>
         </section>
 
