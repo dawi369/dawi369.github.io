@@ -47,22 +47,16 @@ export function Pills() {
             Me
           </button>
           <button
-            onClick={() => scrollToSection('tech')}
+            onClick={() => scrollToSection('projects')}
             className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
           >
-            Tech
+            Projects
           </button>
           <button
-            onClick={() => scrollToSection('work')}
+            onClick={() => scrollToSection('articles')}
             className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
           >
-            Work
-          </button>
-          <button
-            onClick={() => scrollToSection('education')}
-            className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
-          >
-            Education
+            Articles
           </button>
 
           {/* Social Media Icons */}
@@ -131,22 +125,16 @@ export function Pills() {
               Me
             </button>
             <button
-              onClick={() => scrollToSection('tech')}
+              onClick={() => scrollToSection('projects')}
               className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
             >
-              Tech
+              Projects
             </button>
             <button
-              onClick={() => scrollToSection('work')}
+              onClick={() => scrollToSection('articles')}
               className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
             >
-              Work
-            </button>
-            <button
-              onClick={() => scrollToSection('education')}
-              className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
-            >
-              Education
+              Articles
             </button>
           </div>
 
