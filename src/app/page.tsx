@@ -178,7 +178,7 @@ export default function Home() {
                     </a>
                   </div>
                   <p className="text-sm text-gray-500 mt-0.5">
-                    Bachelor's Thesis @ CERN
+                    Bachelor&apos;s Thesis @ CERN
                   </p>
                 </div>
                 <span className="px-3 py-1 bg-gray-100 text-gray-600 text-xs rounded-full">

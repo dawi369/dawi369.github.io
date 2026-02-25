@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
-
 export function Pills() {
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
