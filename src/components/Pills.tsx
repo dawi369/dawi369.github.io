@@ -3,36 +3,41 @@
 import { useEffect } from 'react';
 
 export function Pills() {
-  // Empty useEffect can be removed, but keeping for potential future use
-  useEffect(() => {}, []);
-
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
     const element = document.getElementById(id);
     if (!element) return;
 
-    // Check mobile directly to avoid stale state
-    const isMobileView = window.innerWidth < 768;
+    // Custom smooth scroll implementation that ignores trackpad/hover interruptions
+    const targetPosition = element.getBoundingClientRect().top + window.scrollY;
+    const startPosition = window.scrollY;
+    const distance = targetPosition - startPosition;
+    
+    // Dynamic duration based on distance (min 500ms, max 1000ms)
+    const duration = Math.min(Math.max(Math.abs(distance) / 2, 500), 1000);
+    let start: number | null = null;
 
-    if (isMobileView) {
-      // Mobile: put title at top with offset for bottom nav
-      const elementTop = element.getBoundingClientRect().top + window.scrollY;
-      window.scrollTo({
-        top: Math.max(0, elementTop - 20),
-        behavior: 'smooth',
-      });
-    } else {
-      // Desktop: center the section
-      const elementRect = element.getBoundingClientRect();
-      const elementHeight = elementRect.height;
-      const viewportHeight = window.innerHeight;
-      const elementTop = elementRect.top + window.scrollY;
-      const scrollTo = elementTop - (viewportHeight / 2) + (elementHeight / 2);
+    const animation = (currentTime: number) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const progress = Math.min(timeElapsed / duration, 1);
+      
+      // easeInOutCubic transition
+      const ease = progress < 0.5
+        ? 4 * progress * progress * progress
+        : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
-      window.scrollTo({
-        top: Math.max(0, scrollTo),
-        behavior: 'smooth',
-      });
-    }
+      window.scrollTo(0, startPosition + distance * ease);
+
+      if (timeElapsed < duration) {
+        requestAnimationFrame(animation);
+      }
+    };
+
+    requestAnimationFrame(animation);
+    
+    // Update URL hash without jumping
+    history.pushState(null, '', `#${id}`);
   };
 
   return (
@@ -40,24 +45,27 @@ export function Pills() {
       {/* Desktop Navigation - Left Sidebar */}
       <nav className="fixed left-0 top-0 h-screen w-[15%] hidden md:flex items-center justify-center">
         <div className="flex flex-col gap-2 px-4 w-full">
-          <button
-            onClick={() => scrollToSection('me')}
-            className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
+          <a
+            href="#me"
+            onClick={(e) => scrollToSection(e, 'me')}
+            className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200 block"
           >
             Me
-          </button>
-          <button
-            onClick={() => scrollToSection('projects')}
-            className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
+          </a>
+          <a
+            href="#projects"
+            onClick={(e) => scrollToSection(e, 'projects')}
+            className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200 block"
           >
             Projects
-          </button>
-          <button
-            onClick={() => scrollToSection('articles')}
-            className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200"
+          </a>
+          <a
+            href="#articles"
+            onClick={(e) => scrollToSection(e, 'articles')}
+            className="px-4 py-2 rounded-full text-sm text-center hover:bg-gray-100 transition-colors border border-gray-200 block"
           >
             Articles
-          </button>
+          </a>
 
           {/* Social Media Icons */}
           <div className="flex gap-2 justify-center mt-4">
@@ -94,7 +102,7 @@ export function Pills() {
               </svg>
             </a>
             <a
-              href="https://www.youtube.com/@daviderwindotme"
+              href="https://www.youtube.com/@dawi_dev"
               target="_blank"
               rel="noopener noreferrer"
               className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-gray-100 transition-colors border border-gray-200"
@@ -118,24 +126,27 @@ export function Pills() {
         <div className="px-4 py-3">
           {/* Section Links */}
           <div className="flex gap-2 justify-center mb-3">
-            <button
-              onClick={() => scrollToSection('me')}
-              className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
+            <a
+              href="#me"
+              onClick={(e) => scrollToSection(e, 'me')}
+              className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center justify-center cursor-pointer"
             >
               Me
-            </button>
-            <button
-              onClick={() => scrollToSection('projects')}
-              className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
+            </a>
+            <a
+              href="#projects"
+              onClick={(e) => scrollToSection(e, 'projects')}
+              className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center justify-center cursor-pointer"
             >
               Projects
-            </button>
-            <button
-              onClick={() => scrollToSection('articles')}
-              className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center"
+            </a>
+            <a
+              href="#articles"
+              onClick={(e) => scrollToSection(e, 'articles')}
+              className="px-4 py-2.5 rounded-full text-xs text-center hover:bg-gray-100 active:bg-gray-200 transition-colors border border-gray-200 min-h-[44px] flex items-center justify-center cursor-pointer"
             >
               Articles
-            </button>
+            </a>
           </div>
 
           {/* Social Media Icons */}

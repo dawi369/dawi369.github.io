@@ -1,51 +1,18 @@
 import type { Metadata } from 'next';
-// import { Geist, Geist_Mono } from 'next/font/google';
-import localFont from 'next/font/local';
+import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
-// const geistSans = Geist({
-//   variable: '--font-geist-sans',
-//   subsets: ['latin'],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: '--font-geist-mono',
-//   subsets: ['latin'],
-// });
-
-const sfMono = localFont({
-  src: [
-    {
-      path: '../../public/fonts/sf-mono/SF-Mono-Regular.otf',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/sf-mono/SF-Mono-RegularItalic.otf',
-      weight: '400',
-      style: 'italic',
-    },
-    {
-      path: '../../public/fonts/sf-mono/SF-Mono-Medium.otf',
-      weight: '500',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/sf-mono/SF-Mono-Semibold.otf',
-      weight: '600',
-      style: 'normal',
-    },
-    {
-      path: '../../public/fonts/sf-mono/SF-Mono-Bold.otf',
-      weight: '700',
-      style: 'normal',
-    },
-  ],
-  variable: '--font-sf-mono',
-  display: 'swap',
+const geistSans = Geist({
+  variable: '--font-geist-sans',
+  subsets: ['latin'],
 });
 
-const title = 'David William Erwin';
+const geistMono = Geist_Mono({
+  variable: '--font-geist-mono',
+  subsets: ['latin'],
+});
+
+const title = 'David Erwin | a personal site';
 const description = 'Software Engineer. Gallery of work.';
 const url = 'https://daviderwin.me';
 const image = 'https://daviderwin.me/assets/images/chilling.png';
@@ -102,7 +69,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${sfMono.variable} font-mono antialiased bg-white text-gray-900`}
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased bg-white text-gray-900`}
       >
         <div className="md:grid md:grid-cols-[15%_1fr_15%] min-h-screen">
           {/* Left Margin */}

@@ -6,7 +6,8 @@
 }
 
 @theme inline {
-  --font-mono: var(--font-sf-mono);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
 }
 
 body {
@@ -16,9 +17,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+
 
 /* Dynamic centering handled by JavaScript in Pills.tsx */
 
