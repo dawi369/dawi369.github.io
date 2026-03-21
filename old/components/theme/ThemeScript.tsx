@@ -1,3 +1,7 @@
+/**
+ * Early theme bootstrap script to prevent FOUC (Flash of Unstyled Content)
+ * This script runs before React hydration to set the theme class on <html>
+ */
 export default function ThemeScript() {
   return (
     <script
