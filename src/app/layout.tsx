@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
-import { ThemeProvider } from '@/context/ThemeContext';
-import ThemeScript from '@/components/theme/ThemeScript';
+import Providers from '@/components/Providers';
 import './globals.css';
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -9,8 +8,8 @@ const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
 });
 
-const title = 'David Erwin | a developer\'s site';
-const description = 'Software Engineer. Gallery of work.';
+const title = 'David Erwin | a software engineer\'s site';
+const description = 'Software Engineer. Portfolio of work.';
 const url = 'https://daviderwin.me';
 const image = 'https://daviderwin.me/assets/images/chilling.png';
 
@@ -65,14 +64,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-project="p1" suppressHydrationWarning>
-      <head>
-        <ThemeScript />
-      </head>
       <body
         className={`${plusJakarta.variable} font-sans antialiased bg-background text-foreground`}
         suppressHydrationWarning
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
