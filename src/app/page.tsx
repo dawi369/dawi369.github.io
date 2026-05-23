@@ -7,21 +7,23 @@ export default function Home() {
         <p className="mb-6 text-sm font-medium uppercase tracking-[0.04em] text-muted-foreground">
           Essay
         </p>
-        <h1 className="max-w-2xl font-serif text-6xl leading-[0.9] font-normal text-foreground sm:text-7xl md:text-8xl">
-          Intelligence at your <em className="font-normal">Fingertips</em>
+        <h1 className="max-w-3xl font-serif text-5xl leading-[1.02] font-normal text-foreground sm:text-6xl md:text-7xl">
+          Finance, Tools and{' '}
+          <em className="font-normal">Intelligence</em>
         </h1>
-        <div className="mt-12 space-y-6 text-lg leading-8 text-muted-foreground">
+        <div className="mt-12 max-w-2xl space-y-6 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            pretium, arcu vitae efficitur luctus, lectus magna facilisis arcu,
-            non dictum ipsum justo vitae mi. Sed vitae neque at turpis
-            scelerisque ullamcorper, et fermentum arcu.
+            I am a software engineer at Mastercard, drawn to the places where
+            financial systems, developer tools, and machine learning become real
+            products. I care about clean DX, fast feedback loops, and software
+            that helps small teams move with confidence.
           </p>
           <p>
-            Praesent gravida nulla eu lectus tincidunt, sit amet blandit arcu
-            tincidunt. Donec vitae velit sed nibh volutpat faucibus. Suspendisse
-            potenti. Curabitur posuere, mi id convallis porttitor, lorem erat
-            tempor nisl, at cursus sapien nisl a libero.
+            I am especially interested in ambitious European startups: teams
+            moving quickly on hard problems with enough taste and discipline to
+            build things that last. I keep close to tech and finance because the
+            best opportunities live where infrastructure, markets, and
+            intelligent tools start to overlap.
           </p>
         </div>
       </article>
