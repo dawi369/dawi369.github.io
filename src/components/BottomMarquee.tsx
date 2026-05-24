@@ -1,8 +1,11 @@
 const LINKS = [
-  { label: 'eu/acc', href: 'https://euacc.com' },
-  { label: 'Hermes', href: 'https://www.hermes.com' },
+  { label: 'CERN Research', href: 'https://repository.cern/records/1r0yx-syh45' },
+  { label: 'Tech', href: 'https://daviderwin.me/tech' },
+  { label: 'Hackathons', href: 'https://daviderwin.me/hackathons' },
+  { label: 'Hermes', href: 'https://hermes-agent.nousresearch.com/' },
   { label: 'Polymancer', href: 'https://polymancer.ai' },
   { label: 'Swordfsh', href: 'https://swordfsh.app' },
+  { label: 'eu/acc', href: 'https://euacc.com' },
 ];
 
 const REPEAT_COUNT = 50;
@@ -10,7 +13,7 @@ const REPEAT_COUNT = 50;
 export default function BottomMarquee() {
   return (
     <nav
-      aria-label="Interests"
+      aria-label="Work and projects"
       className="bottom-marquee-mask absolute bottom-4 left-[20%] right-[28%] z-40 h-9 overflow-hidden text-muted-foreground sm:right-[20%]"
     >
       <div className="bottom-marquee-track flex h-full w-max items-center whitespace-nowrap">
