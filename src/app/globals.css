@@ -219,12 +219,16 @@ body {
     transform: translateX(0);
   }
   to {
-    transform: translateX(-50%);
+    transform: translateX(-2%);
   }
 }
 
 .bottom-marquee-track {
   animation: bottom-marquee 14s linear infinite;
+}
+
+.bottom-marquee-segment {
+  padding-right: 40px;
 }
 
 .bottom-marquee-mask {
