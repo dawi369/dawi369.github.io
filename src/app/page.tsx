@@ -31,7 +31,7 @@ export default function Home() {
             who care about quality, move quickly, and make each other sharper.
           </p>
           <p>
-            Outside work, my hobbies are mostly about athetism, tech, and skills
+            Outside work, my hobbies are mostly about athletics, tech, and skills
             that will last me a lifetime. I am a lifelong ice hockey player, I 
             build and fly drones, and I am learning guitar on the side.
           </p>
