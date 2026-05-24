@@ -1,14 +1,5 @@
 import Link from 'next/link';
-
-const FIELDS = [
-  'Event',
-  'Date',
-  'Team',
-  'Problem',
-  'What we built',
-  'Stack',
-  'What I learned',
-];
+import { HACKATHONS } from '@/content/hackathons';
 
 export default function HackathonsPage() {
   return (
@@ -23,23 +14,29 @@ export default function HackathonsPage() {
         <h1 className="mt-12 max-w-3xl font-serif text-5xl leading-[1.02] font-normal sm:text-6xl md:text-7xl">
           Hackathon <em className="font-normal">Notes</em>
         </h1>
-        <p className="mt-10 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-          I have only been to one hackathon so far, so this page is intentionally
-          a placeholder for the details that matter: what the team tried, what I
-          shipped, and what I would do differently next time.
+        <p className="mt-10 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+          A running list of hackathons I have been part of. There is only one
+          entry for now, but this page is structured so future events can each
+          have their own notes.
         </p>
 
         <div className="mt-16 space-y-4">
-          {FIELDS.map((field) => (
-            <section
-              key={field}
-              className="grid gap-3 border-t border-border pt-4 sm:grid-cols-[160px_1fr]"
+          {HACKATHONS.map((hackathon) => (
+            <Link
+              key={hackathon.slug}
+              href={`/hackathons/${hackathon.slug}`}
+              className="block border-t border-border py-6 transition hover:border-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
             >
-              <h2 className="text-sm font-medium text-foreground">{field}</h2>
-              <p className="text-sm leading-6 text-muted-foreground">
-                Fill this in.
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:justify-between">
+                <h2 className="text-lg font-medium text-foreground">
+                  {hackathon.title}
+                </h2>
+                <p className="text-sm text-muted-foreground">{hackathon.date}</p>
+              </div>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-muted-foreground">
+                {hackathon.summary}
               </p>
-            </section>
+            </Link>
           ))}
         </div>
       </section>
