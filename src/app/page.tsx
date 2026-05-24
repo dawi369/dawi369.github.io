@@ -1,3 +1,4 @@
+import BottomMarquee from '@/components/BottomMarquee';
 import HomeControls from '@/components/HomeControls';
 
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
         </div>
       </article>
 
+      <BottomMarquee />
       <HomeControls />
     </main>
   );

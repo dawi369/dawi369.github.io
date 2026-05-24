@@ -213,3 +213,22 @@ body {
 .dark a {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0.05);
 }
+
+@keyframes bottom-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.bottom-marquee-track {
+  animation: bottom-marquee 14s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-marquee-track {
+    animation: none;
+  }
+}
