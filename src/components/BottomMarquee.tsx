@@ -1,7 +1,7 @@
 const LINKS = [
   { label: 'CERN Research', href: 'https://repository.cern/records/1r0yx-syh45' },
-  { label: 'Tech', href: 'https://daviderwin.me/tech' },
-  { label: 'Hackathons', href: 'https://daviderwin.me/hackathons' },
+  { label: 'Tech', href: '/tech' },
+  { label: 'Hackathons', href: '/hackathons' },
   { label: 'Hermes', href: 'https://hermes-agent.nousresearch.com/' },
   { label: 'Polymancer', href: 'https://polymancer.ai' },
   { label: 'Swordfsh', href: 'https://swordfsh.app' },
@@ -27,8 +27,8 @@ export default function BottomMarquee() {
               <a
                 key={`${link.label}-${groupIndex}`}
                 href={link.href}
-                target="_blank"
-                rel="noreferrer"
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noreferrer' : undefined}
                 tabIndex={groupIndex === 0 ? undefined : -1}
                 className="text-xs font-medium transition hover:text-foreground hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50"
               >
