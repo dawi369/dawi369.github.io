@@ -30,6 +30,11 @@ export default function Home() {
             ambition to build things that matter. I want to work around people
             who care about quality, move quickly, and make each other sharper.
           </p>
+          <p>
+            Outside work, my hobbies are mostly about athetism, tech, and skills
+            that will last me a lifetime. I am a lifelong ice hockey player, I 
+            build and fly drones, and I am learning guitar on the side.
+          </p>
         </div>
       </article>
 

@@ -1,0 +1,291 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-1pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-1pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\lot}[1]{\ensuremath{\overline{\mathbf{#1}}}}
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\LARGE \scshape David William Erwin} \\ \vspace{4pt}
+    \small \href{https://daviderwin.me}{\underline{daviderwin.me}} $|$ \href{mailto:hello@daviderwin.me}{hello@daviderwin.me} $|$ Czech \& U.S. Citizenship $|$  Native English
+\end{center}
+
+
+\vspace{-26pt} % Adjust this value to control the space below the header
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+ \resumeSubheading
+      {Czech Technical University (ČVUT)}{August 2022 -- June 2025}
+      {Bachelor of Science in Electrical Engineering and Computer Science} {Prague, Czech Republic}
+      \resumeItemListStart
+        \resumeItem{\textbf{Machine Learning Research Thesis | CERN ATLAS}}
+        \resumeItem{Developed a transformer-based classifier ($\approx$1.2M parameters) for rare Higgs boson signals in noisy high-energy physics datasets from CERN ATLAS, achieving an AUC of 0.804 and F1-score of 0.705. Engineered custom preprocessing pipeline with particle-specific feature scaling, applied advanced regularization techniques, and improved interpretability via self-attention visualization aligned with physical observables.}
+        \resumeItem{\textbf{Relevant Courses:} Statistical Machine Learning, Pattern Recognition, Computer Architectures, Cybernetics, C Programming, Logic Systems and Processors, Quantum Computing, Probability and Statistics.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {Software Engineer - Data Pipeline}{September 2025 -- Present}
+    {Mastercard}{Prague, Czech Republic}
+    \resumeItemListStart
+      \resumeItem{Redesigned e-commerce adjustment step in SpendingPulse core pipeline with modern idempotent design, significantly improving execution speed and maintainability.}
+      \resumeItem{Co-led SpendingPulse Near-Real-Time pipeline migration to Databricks; cut operational expenses and boosted developer experience via modern Spark/Delta Lake workflows.}
+      \resumeItem{Co-led a 2-person team consolidation of two legacy tourism pipelines into a unified hybrid pipeline; preserved complex geography-level logic while modernizing data flows and eliminating technical debt.}
+      \resumeItem{Major contributor to dev tools including MCP servers and auto-generation of components for new pipeline features.}
+    \resumeItemListEnd
+    \vspace{-4mm}
+
+\resumeSubHeadingListEnd
+
+  % \resumeSubHeadingListStart
+
+  %   \resumeSubheading
+  %     {Software Engineer Trainee}{December 2024 -- April 2025}
+  %     {Valeo R\&D Center}{Prague, Czech Republic}
+  %   \resumeItemListStart 
+  %   \resumeItem{Collaborated closely with internal stakeholders to develop custom web applications using Google Apps Script, optimizing workflows and driving efficiency improvements that led to in €77,000 in annual time and cost savings.}
+  %   \resumeItem{Engineered tailored solutions that automate repetitive tasks and streamline diverse processes, directly addressing unique client requirements across departments.}
+  %   \resumeItem{Led full-cycle development initiatives in a dynamic team environment, from concept through deployment, ensuring high-quality, user-centric products that simplify operations and drive productivity.}
+  %   \resumeItemListEnd
+
+  % \resumeSubHeadingListEnd
+      
+% -----------Multiple Positions Heading-----------
+%    \resumeSubSubheading
+%     {Software Engineer I}{Oct 2014 - Sep 2016}
+%     \resumeItemListStart
+%        \resumeItem{Apache Beam}
+%          {Apache Beam is a unified model for defining both batch and streaming data-parallel processing pipelines}
+%     \resumeItemListEnd
+%    \resumeSubHeadingListEnd
+%-------------------------------------------
+
+    % \resumeSubheading
+    %   {Information Technology Support Specialist}{Sep. 2018 -- Present}
+    %   {Southwestern University}{Georgetown, TX}
+    %   \resumeItemListStart
+    %     \resumeItem{Communicate with managers to set up campus computers used on campus}
+    %     \resumeItem{Assess and troubleshoot computer problems brought by students, faculty and staff}
+    %     \resumeItem{Maintain upkeep of computers, classroom equipment, and 200 printers across campus}
+    % \resumeItemListEnd
+
+    % \resumeSubheading
+    %   {Artificial Intelligence Research Assistant}{May 2019 -- July 2019}
+    %   {Southwestern University}{Georgetown, TX}
+    %   \resumeItemListStart
+    %     \resumeItem{Explored methods to generate video game dungeons based off of \emph{The Legend of Zelda}}
+    %     \resumeItem{Developed a game in Java to test the generated dungeons}
+    %     \resumeItem{Contributed 50K+ lines of code to an established codebase via Git}
+    %     \resumeItem{Conducted  a human subject study to determine which video game dungeon generation technique is enjoyable}
+    %     \resumeItem{Wrote an 8-page paper and gave multiple presentations on-campus}
+    %     \resumeItem{Presented virtually to the World Conference on Computational Intelligence}
+    %   \resumeItemListEnd
+
+  % \resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+
+\resumeSubHeadingListStart
+
+    \resumeSubheading
+      {drillbit}{February 2024 -- Present}
+      {Expo, OpenRouter}{}
+      \resumeItemListStart
+        \resumeItem{Built an interview prep app that adapts to a user-defined focus area through context-engineered prompts.}
+        \resumeItem{Designed an elegant AI coach that guides users through problems with minimal interruption to the solving flow.}
+        \resumeItem{Implemented modern text streaming and low-friction UI/UX for fast, unobtrusive AI-assisted practice.}
+      \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-1mm}
+\resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Polymancer}{December 2024 -- Present}
+      {Expo, Supabase, Upstash Redis, Cloudflare Workers, OpenRouter}{}
+      \resumeItemListStart
+        \resumeItem{Built a trading Polymarket agent that lets users manage and monitor a custom strategy 24/7 from mobile.}
+        \resumeItem{Designed a hold-first agent orchestrator that turns market, position, and signal data into trade decisions.}
+        \resumeItem{Implemented shared risk controls and real-time copy, snipe, and arbitrage modules within one agent workflow.}
+      \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+\vspace{-1mm}
+\resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Swordfish}{July 2024 -- Present}
+      {Next.js, Supabase, Redis, Docker, \href{https://www.massive.com}{\underline{massive.com}}, TradingView}{}
+      \resumeItemListStart
+        \resumeItem{Built a real-time futures analytics terminal centered on fast, chart-driven market analysis.}
+        \resumeItem{Designed a Bun market-data hub with Redis hot caching to power live updates and responsive views.}
+        \resumeItem{Implemented multi-symbol comparison, weighted spreads, and front-month contract handling for futures analysis.}
+      \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+% \resumeSubHeadingListStart
+
+%     \resumeSubheading
+%       {Inference Server with Infrastructure as Code}{October 2024 -- December 2024}
+%       {Azure Cloud Platform, Terraform}{}
+%       \resumeItemListStart
+%         \resumeItem{Designed and deployed an inference server on Azure Cloud Platform to serve deep learning models.}
+%         \resumeItem{Leveraged Terraform for Infrastructure as Code (IaC) to automate provisioning of cloud resources.}
+%         \resumeItem{Implemented scalable deployment practices to optimize performance and resource utilization.}
+%       \resumeItemListEnd
+
+% \resumeSubHeadingListEnd
+
+
+%
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages}: Python, TypeScript, SQL, Kotlin, C \\
+    \textbf{Full-Stack}: React, Expo, Next.js, Bun,  Zod, Zustand, Tailwind CSS, Uniwind, Redis, Postgres \\
+    \textbf{Cloud \& DevOps}: AWS, Terraform, Cloudflare Workers, Docker, GitHub Actions, Tailscale, Fly.io, Railway \\
+    \textbf{Data / ML Tools}: Apache Spark, Databricks, PyTorch, Optuna, Pandas \\
+    % \textbf{Tools}: Git, Jira, Confluence
+  }}
+\end{itemize}
+
+
+%-----------CERTIFICATES-----------
+\section{Certificates}
+\resumeSubHeadingListStart
+\resumeProjectHeading
+{\textbf{Databricks Certified Data Engineer Associate} $|$ \emph{Databricks Cloud}}{October 2024}
+\resumeItemListStart
+\resumeItem{Validated expertise in building ETL pipelines and managing large datasets with Apache Spark on Databricks.}
+\resumeItemListEnd
+
+\resumeProjectHeading
+{\textbf{Machine Learning Specialization} $|$ \emph{Stanford Online - Andrew Ng}}{September 2024}
+\resumeItemListStart
+\resumeItem{Implemented supervised/unsupervised learning, backpropagation, and gradient descent algorithms from scratch.}
+\resumeItemListEnd
+\resumeSubHeadingListEnd
+
+
+%-------------------------------------------
+\end{document}
