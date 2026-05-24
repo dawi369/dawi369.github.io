@@ -9,7 +9,7 @@ export default function BottomMarquee() {
   return (
     <nav
       aria-label="Interests"
-      className="absolute bottom-4 left-[20%] right-[28%] z-40 h-9 overflow-hidden text-muted-foreground sm:right-[20%]"
+      className="bottom-marquee-mask absolute bottom-4 left-[20%] right-[28%] z-40 h-9 overflow-hidden text-muted-foreground sm:right-[20%]"
     >
       <div className="bottom-marquee-track flex h-full w-max items-center gap-10 whitespace-nowrap">
         {[...LINKS, ...LINKS].map((link, index) => (

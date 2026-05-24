@@ -227,6 +227,23 @@ body {
   animation: bottom-marquee 14s linear infinite;
 }
 
+.bottom-marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 18%,
+    black 82%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 18%,
+    black 82%,
+    transparent
+  );
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bottom-marquee-track {
     animation: none;
