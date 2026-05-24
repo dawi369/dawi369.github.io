@@ -1,12 +1,8 @@
 const LINKS = [
   { label: 'eu/acc', href: 'https://euacc.com' },
   { label: 'Hermes', href: 'https://www.hermes.com' },
-  { label: 'Polymarket', href: 'https://polymarket.com' },
-  { label: 'CERN ATLAS', href: 'https://atlas.cern' },
-  { label: 'Databricks', href: 'https://www.databricks.com' },
-  { label: 'Prague', href: 'https://www.prague.eu' },
-  { label: 'Futures', href: 'https://www.cmegroup.com' },
-  { label: 'Applied AI', href: 'https://openrouter.ai' },
+  { label: 'Polymancer', href: 'https://polymancer.ai' },
+  { label: 'Swordfsh', href: 'https://swordfsh.app' },
 ];
 
 export default function BottomMarquee() {
