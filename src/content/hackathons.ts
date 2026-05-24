@@ -1,18 +1,18 @@
 export const HACKATHONS = [
   {
     slug: 'first',
-    title: 'First Hackathon',
-    date: 'Fill this in',
+    title: 'European Defence Tech Hub Hackathon',
+    date: '2026-05-15',
     summary:
       'A placeholder for the first hackathon: what the team tried, what shipped, and what I would do differently next time.',
     fields: [
-      ['Event', 'Fill this in.'],
-      ['Date', 'Fill this in.'],
-      ['Team', 'Fill this in.'],
-      ['Problem', 'Fill this in.'],
-      ['What we built', 'Fill this in.'],
-      ['Stack', 'Fill this in.'],
-      ['What I learned', 'Fill this in.'],
+      ['Event', 'European Defence Tech Hub Hackathon'],
+      ['Date', '2026-05-15'],
+      ['Team', 'The team we worked with'],
+      ['Problem', 'The problem we were trying to solve'],
+      ['What we built', 'What we built'],
+      ['Stack', 'The stack we used'],
+      ['What I learned', 'What I learned from the experience'],
     ],
   },
 ] as const;
