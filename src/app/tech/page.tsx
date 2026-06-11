@@ -2,24 +2,119 @@ import Link from 'next/link';
 
 const STACK = [
   {
-    title: 'Languages',
-    items: ['Python', 'TypeScript', 'SQL', 'Kotlin', 'C'],
+    title: 'Product Web',
+    items: [
+      'TypeScript',
+      'Next.js 16',
+      'React 19',
+      'Astro',
+      'Tailwind CSS v4',
+      'Radix UI',
+      'Base UI',
+    ],
   },
   {
-    title: 'Product',
-    items: ['React', 'Expo', 'Next.js', 'Bun', 'Zod', 'Zustand', 'Tailwind CSS', 'Uniwind'],
+    title: 'Native Apps',
+    items: [
+      'Expo SDK 55',
+      'React Native',
+      'Expo Router',
+      'Expo Widgets',
+      'HeroUI Native',
+      'Uniwind',
+      'SQLite',
+    ],
   },
   {
-    title: 'Data and Systems',
-    items: ['Postgres', 'Redis', 'Apache Spark', 'Databricks', 'Pandas'],
+    title: 'Agents and AI',
+    items: [
+      'assistant-ui',
+      'LangGraph',
+      'Vercel AI SDK',
+      'OpenRouter',
+      'LangChain',
+      'Cloudflare Agents',
+      'Browserbase',
+    ],
   },
   {
-    title: 'ML',
-    items: ['PyTorch', 'Optuna'],
+    title: 'Backend and Data',
+    items: [
+      'Bun',
+      'Cloudflare Workers',
+      'D1',
+      'Postgres',
+      'Redis',
+      'Payload CMS',
+      'Supabase',
+      'Zod',
+    ],
   },
   {
-    title: 'Cloud and DevOps',
-    items: ['AWS', 'Terraform', 'Cloudflare Workers', 'Docker', 'GitHub Actions', 'Tailscale', 'Fly.io', 'Railway'],
+    title: 'Ops',
+    items: [
+      'Wrangler',
+      'Docker',
+      'Fly.io',
+      'Railway',
+      'Trigger.dev',
+      'Sentry',
+      'PostHog',
+      'Biome',
+    ],
+  },
+  {
+    title: 'Data Science',
+    items: ['Python', 'SQL', 'Databricks', 'Spark', 'PyTorch', 'Transformers'],
+  },
+];
+
+const PROJECTS = [
+  {
+    name: 'assistant-mk1',
+    role: 'agent workbench',
+    stack:
+      'Next.js, assistant-ui, LangGraph, OpenRouter, WorkOS, Cloudflare Worker/D1, Fly',
+  },
+  {
+    name: 'swordfish',
+    role: 'futures terminal',
+    stack:
+      'Next.js terminal UI, Bun market-data hub, Redis hot path, Postgres durable bars, Trigger.dev jobs',
+  },
+  {
+    name: 'drillbit',
+    role: 'interview prep app',
+    stack:
+      'Expo SDK 55, React Native, Expo Router, widgets, HeroUI Native, Uniwind, local SQLite',
+  },
+  {
+    name: 'polymancer',
+    role: 'Polymarket bot product',
+    stack:
+      'Cloudflare Workers, Queues, Cron, D1, Expo mobile, Next.js waitlist, Supabase auth',
+  },
+  {
+    name: 'momma-bot',
+    role: 'job-search control plane',
+    stack:
+      'Bun server, Postgres, Browserbase/Stagehand, policy gates, audit records, Fly deployment',
+  },
+  {
+    name: 'aeromarine-mil',
+    role: 'content-heavy production site',
+    stack:
+      'Next.js 16, Payload CMS, Postgres, S3 storage, content query boundary, Vitest checks',
+  },
+  {
+    name: 't23.dev',
+    role: 'studio site',
+    stack: 'Astro 6, MDX, sitemap, simple static publishing',
+  },
+  {
+    name: 'mk5',
+    role: 'desktop/runtime experiment',
+    stack: 'Electrobun, Bun tests, Cloudflare Worker helper',
   },
 ];
 
@@ -37,11 +132,8 @@ export default function TechPage() {
           Tech in <em className="font-normal">Practice</em>
         </h1>
         <p className="mt-10 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-          The tools I reach for are mostly boring on purpose: typed product
-          code, practical data systems, and enough ML depth to know when a model
-          is useful instead of decorative.
+        The arsenal: typed product code, practical, scalable, data systems.
         </p>
-
         <div className="mt-16 grid gap-8 sm:grid-cols-2">
           {STACK.map((group) => (
             <section key={group.title} className="border-t border-border pt-6">
@@ -61,6 +153,32 @@ export default function TechPage() {
             </section>
           ))}
         </div>
+
+        <section className="mt-20 border-t border-border pt-8">
+          <h2 className="text-sm font-medium uppercase tracking-[0.04em] text-foreground">
+            Where it shows up
+          </h2>
+          <div className="mt-6 divide-y divide-border">
+            {PROJECTS.map((project) => (
+              <article
+                key={project.name}
+                className="grid gap-3 py-6 sm:grid-cols-[12rem_1fr]"
+              >
+                <div>
+                  <h3 className="text-base font-medium text-foreground">
+                    {project.name}
+                  </h3>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    {project.role}
+                  </p>
+                </div>
+                <p className="text-sm leading-6 text-muted-foreground sm:text-base sm:leading-7">
+                  {project.stack}
+                </p>
+              </article>
+            ))}
+          </div>
+        </section>
       </section>
     </main>
   );

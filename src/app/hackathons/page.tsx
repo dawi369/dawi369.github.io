@@ -15,11 +15,8 @@ export default function HackathonsPage() {
           Hackathon <em className="font-normal">Notes</em>
         </h1>
         <p className="mt-10 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-          A running list of hackathons I have been part of. There is only one
-          entry for now, but this page is structured so future events can each
-          have their own notes.
+          A running list of hackathons I have been part of.
         </p>
-
         <div className="mt-16 space-y-4">
           {HACKATHONS.map((hackathon) => (
             <Link
