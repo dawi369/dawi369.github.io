@@ -11,19 +11,32 @@ export default function Home() {
         <div className="mt-12 max-w-2xl space-y-6 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
           <p>
             I am a software engineer in Prague, interested in serious products
-            at the edge of finance, data, machine learning, and markets. I like
-            work where good taste matters: clear systems, fast feedback, and
-            engineering that turns messy real-world problems into something
-            useful.
+            at the edge of llm automation, finance, and ml. I like
+            work where the details matter and the product has to hold up in the
+            real world.
           </p>
           <p>
-            At Mastercard, I work on financial data pipelines, Databricks
-            migrations, and large-scale data products. I studied electrical
+            At Mastercard, I worked on financial data pipelines, Databricks
+            migrations, and large-scale data products. I now work on the team
+            that build the apps and serivces using that data. I studied electrical
             engineering and computer science at Czech Technical University,
-            where my thesis used transformer models to classify rare Higgs boson
-            signals in CERN ATLAS data. Outside work, I build side projects
-            around markets, analytics, and applied AI, including trading agents,
-            futures tooling, and AI-assisted learning products.
+            where my thesis used a transformer model, designed and trained by me, 
+            to classify rare Higgs boson signals in CERN ATLAS data. 
+          </p> 
+          <p>
+            Outside work, I run a small software studio called{' '}
+            <a
+              href="https://t23.dev"
+              target="_blank"
+              rel="noreferrer"
+              className="text-link"
+            >
+              T23
+            </a>
+            , 
+            where we build actually useful and scalable software products around llm 
+            automation, market analytics, interview prep, and applied AI in several 
+            sectors includion financial.
           </p>
           <p>
             I am looking for teams with high standards, real urgency, and enough
