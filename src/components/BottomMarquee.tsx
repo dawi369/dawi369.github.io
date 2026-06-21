@@ -8,7 +8,7 @@ const LINKS = [
   // { label: 'Swordfsh', href: 'https://swordfsh.app' },
   { label: 'Tech', href: '/tech' },
   { label: 'Hackathons', href: '/hackathons' },
-  { label: 'eu/acc', href: 'https://euacc.com' },
+  // { label: 'eu/acc', href: 'https://euacc.com' },
 ];
 
 const REPEAT_COUNT = 50;

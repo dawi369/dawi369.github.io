@@ -10,7 +10,7 @@ export default function Home() {
         </h1>
         <div className="mt-12 max-w-2xl space-y-6 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
           <p>
-            I am a software engineer in Prague, interested in serious products
+            I am a multinational software engineer, interested in serious products
             at the edge of llm automation, finance, and ml. I like
             work where the details matter and the product has to hold up in the
             real world.
