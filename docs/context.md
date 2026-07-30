@@ -4,33 +4,36 @@ Technical context for agents working on this project.
 
 ## Architecture
 
-- **Framework:** Next.js 15 App Router, static export (`output: 'export'`)
-- **Deployment:** GitHub Pages at daviderwin.me — fully static, no server-side rendering
+- **Framework:** Next.js 15 App Router
+- **Deployment:** GitHub Pages at `daviderwin.me`
+- **Rendering:** static export only
 - **Package manager:** Bun
+- **Typography:** bundled SF Mono Regular and Semibold via `next/font/local`
 
-## Key Constraints
+## Homepage
 
-- Static export only — no API routes, no server components that need runtime
-- SSR generates HTML at build time — any client-only state (localStorage, window) causes hydration mismatches
-- next-themes `theme` is `undefined` on server, populated on client — use `suppressHydrationWarning` on elements that render theme-dependent text (React's built-in mechanism for external values that differ server/client). Do not use `useEffect` + mounted guards
-- CSS custom properties registered with `@property` enable smooth color transitions via CSS — no JS animation needed
+`src/components/SignalRoom.tsx` owns the homepage content, evidence state, and
+pointer-position updates. The page has no server runtime and no animation
+dependency.
 
-## Theme System
+The active evidence item is represented by `data-focus` on the homepage root.
+CSS maps that state to `--active-signal`; components consume the semantic token
+instead of embedding colors in JSX.
 
-Two axes, both CSS-driven:
+## Motion
 
-1. **Light/dark mode** — next-themes adds/removes `.dark` class on `<html>`
-2. **Project color scheme** — `data-project` attribute on `<html>`, CSS attribute selectors swap variable values
+- Entrance choreography, the character-state headline, tile assembly, scans, and
+  hover feedback are CSS-driven.
+- JavaScript only rotates the evidence selection and publishes pointer position as
+  CSS custom properties.
+- Motion stops cycling when the visitor deliberately selects evidence.
+- `prefers-reduced-motion` resolves all information immediately and disables
+  ambient scans.
 
-Both trigger CSS variable changes on `:root` / `.dark[data-project="..."]`. The `transition` on `body` interpolates the `@property`-registered color values smoothly (~500ms).
+## Design constraints
 
-Do not introduce JS-based color animation — `@property` transitions are the intended mechanism.
-
-## Color Tokens
-
-9 semantic CSS variables: `background`, `foreground`, `muted`, `muted-foreground`, `border`, `accent`, `accent-foreground`, `card`, `card-foreground`. Each has light + dark variants per project. Values defined in `globals.css`.
-
-## Patterns
-
-**No `useEffect` for hydration guards.** When rendering text that depends on client-only state (e.g. next-themes `theme`), add `suppressHydrationWarning` to the element. React will skip the mismatch check on that element and reconcile seamlessly. This avoids the unnecessary mounted-state + re-render pattern.
-
+- All component colors come from semantic tokens in `src/app/globals.css`.
+- One font family and two weights are used application-wide.
+- Layout spacing follows the project’s 4px scale.
+- Interactive elements include hover, active, and visible keyboard-focus states.
+- The site must remain legible and navigable when animation is disabled.

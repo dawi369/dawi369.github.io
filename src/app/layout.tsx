@@ -1,53 +1,57 @@
 import type { Metadata } from 'next';
-import { Plus_Jakarta_Sans } from 'next/font/google';
-import Providers from '@/components/Providers';
+import localFont from 'next/font/local';
 import './globals.css';
 
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: '--font-sans',
-  subsets: ['latin'],
+const signalMono = localFont({
+  variable: '--font-signal',
+  display: 'swap',
+  src: [
+    {
+      path: '../../public/fonts/sf-mono/SF-Mono-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/fonts/sf-mono/SF-Mono-Semibold.otf',
+      weight: '600',
+      style: 'normal',
+    },
+  ],
 });
 
-const title = 'David Erwin | a software engineer\'s site';
-const description = 'Software Engineer. Portfolio of work.';
+const title = 'David Erwin — Software Engineer';
+const description =
+  'I build software where almost right is still wrong. Mastercard systems, CERN research, and independent products.';
 const url = 'https://daviderwin.me';
 const image = 'https://daviderwin.me/assets/images/chilling.png';
 
 export const metadata: Metadata = {
   metadataBase: new URL(url),
-  title: title,
-  description: description,
+  title,
+  description,
   keywords: [
     'David Erwin',
-    'Portfolio',
-    'Blog',
-    'Software Developer',
     'Software Engineer',
+    'Product Engineer',
     'Data Engineer',
-    'X',
-    'Twitter',
-    'Youtube',
+    'AI Engineer',
+    'Mastercard',
+    'CERN ATLAS',
   ],
-  authors: [{ name: title, url: url }],
+  authors: [{ name: 'David Erwin', url }],
   openGraph: {
-    title: title,
-    description: description,
-    url: url,
-    siteName: title,
-    images: [
-      {
-        url: image,
-        width: 1200,
-        height: 630,
-      },
-    ],
+    title,
+    description,
+    url,
+    siteName: 'David Erwin',
+    images: [{ url: image, width: 1200, height: 630 }],
     locale: 'en_US',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: title,
-    description: description,
+    title,
+    description,
     creator: '@devDawi',
     images: [image],
   },
@@ -63,13 +67,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-project="p1" suppressHydrationWarning>
-      <body
-        className={`${plusJakarta.variable} font-sans antialiased bg-background text-foreground`}
-        suppressHydrationWarning
-      >
-        <Providers>{children}</Providers>
-      </body>
+    <html lang="en">
+      <body className={signalMono.variable}>{children}</body>
     </html>
   );
 }
