@@ -26,11 +26,12 @@ const PROOFS: Proof[] = [
     id: 'mastercard',
     index: '01',
     label: 'Mastercard',
-    eyebrow: 'Finance / scale',
-    quip: 'Built financial data systems that have to be right.',
+    eyebrow: 'Full stack / product',
+    quip:
+      'Built ambitious products with teams across the stack—from data systems to user-facing software.',
     detail:
-      'Modernized SpendingPulse pipelines, co-led a near-real-time Databricks migration, and helped retire expensive legacy paths.',
-    metric: 'NRT / SPARK / DELTA',
+      'Co-led Tourism Insights, a new product that replaced two legacy pipelines and expanded tourism and market intelligence across Asia, Europe, and the U.S. Migrated near-real-time processing to Databricks Serverless. Now I ship React and TypeScript interfaces alongside .NET and C# services for a unified platform, while building team-adopted tools for synthetic data and documentation health.',
+    metric: 'TEAM / PLATFORM / DELIVERY',
   },
   {
     id: 'cern',
@@ -39,7 +40,7 @@ const PROOFS: Proof[] = [
     eyebrow: 'Research / signal',
     quip: 'Trained a transformer to find rare Higgs signals.',
     detail:
-      'Designed a 1.2M-parameter classifier and its preprocessing pipeline for noisy high-energy physics data.',
+      'Developed a 1.2M-parameter Transformer classifier and particle-specific preprocessing pipeline for rare Higgs signals in CERN ATLAS data.',
     metric: '0.804 AUC / 0.705 F1',
     href: 'https://repository.cern/records/1r0yx-syh45',
     action: 'Read the research',
@@ -63,8 +64,10 @@ const SYSTEMS = [
     index: 'A',
     name: 'assistant-mk1',
     type: 'agent workbench',
-    line: 'A control plane for running, reviewing, and governing agents.',
+    line:
+      'Durable runs, approvals, tool policy, artifacts, and recovery outside the chat box.',
     stack: 'Next.js / LangGraph / WorkOS / Cloudflare / Fly',
+    href: 'https://github.com/dawi369/assistant-mk1',
   },
   {
     index: 'B',
@@ -72,6 +75,7 @@ const SYSTEMS = [
     type: 'futures terminal',
     line: 'Live market data, hot caches, durable bars, no patience for stale screens.',
     stack: 'Next.js / Bun / Redis / Postgres / Trigger.dev',
+    // Add `href` when a public project destination is ready.
   },
   {
     index: 'C',
@@ -79,6 +83,7 @@ const SYSTEMS = [
     type: 'interview coach',
     line: 'Keeps the human solving; brings in AI without hijacking the flow.',
     stack: 'Expo / React Native / OpenRouter / SQLite',
+    // Add `href` when a public project destination is ready.
   },
   {
     index: 'D',
@@ -86,11 +91,14 @@ const SYSTEMS = [
     type: 'market agent',
     line: 'A hold-first trading agent with real risk controls, not just confident output.',
     stack: 'Cloudflare / D1 / Queues / Expo / Supabase',
-    href: 'https://polymancer.ai',
+    // Add `href` when a public project destination is ready.
   },
 ];
 
 const TILE_WORDS = ['product', 'data', 'systems', 'ai'];
+const EMAIL = 'hello@daviderwin.me';
+const ROTATION_INTERVAL_MS = 10000;
+const INTERACTION_PAUSE_MS = 6000;
 
 type GlyphStyle = CSSProperties & {
   '--glyph-index': number;
@@ -99,6 +107,47 @@ type GlyphStyle = CSSProperties & {
 type TileStyle = CSSProperties & {
   '--tile-index': number;
 };
+
+async function writeClipboard(text: string) {
+  if (!navigator.clipboard?.writeText) {
+    throw new Error('Clipboard API unavailable');
+  }
+
+  await new Promise<void>((resolve, reject) => {
+    const timeout = window.setTimeout(() => {
+      reject(new Error('Clipboard API timed out'));
+    }, 800);
+
+    navigator.clipboard.writeText(text).then(
+      () => {
+        window.clearTimeout(timeout);
+        resolve();
+      },
+      (error) => {
+        window.clearTimeout(timeout);
+        reject(error);
+      },
+    );
+  });
+}
+
+function fallbackCopy(text: string) {
+  const field = document.createElement('textarea');
+  field.value = text;
+  field.setAttribute('readonly', '');
+  Object.assign(field.style, {
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    opacity: '0',
+    pointerEvents: 'none',
+  });
+  document.body.appendChild(field);
+  field.select();
+  const copied = document.execCommand('copy');
+  document.body.removeChild(field);
+  return copied;
+}
 
 function KineticHeadline() {
   const lines = [
@@ -163,28 +212,65 @@ function TileBar() {
   );
 }
 
+function ProofCardContent({ proof }: { proof: Proof }) {
+  return (
+    <>
+      <span className="signal-proof-index">{proof.index}</span>
+      <span className="signal-proof-label">{proof.label}</span>
+      <span className="signal-proof-quip">{proof.quip}</span>
+      <span className="signal-proof-arrow" aria-hidden="true">
+        ↗
+      </span>
+    </>
+  );
+}
+
+function CopyIcon({ copied }: { copied: boolean }) {
+  return copied ? (
+    <svg viewBox="0 0 20 20" aria-hidden="true">
+      <path d="m4.5 10.5 3.25 3.25L15.5 6" />
+    </svg>
+  ) : (
+    <svg viewBox="0 0 20 20" aria-hidden="true">
+      <rect x="6.5" y="6.5" width="10" height="10" rx="2" />
+      <path d="M13.5 6.5V5.25A1.75 1.75 0 0 0 11.75 3.5h-6.5A1.75 1.75 0 0 0 3.5 5.25v6.5A1.75 1.75 0 0 0 5.25 13.5H6.5" />
+    </svg>
+  );
+}
+
 export default function SignalRoom() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [autoRotate, setAutoRotate] = useState(true);
+  const [rotationPaused, setRotationPaused] = useState(false);
+  const [copyState, setCopyState] = useState<
+    'idle' | 'copying' | 'copied' | 'failed'
+  >('idle');
   const roomRef = useRef<HTMLElement>(null);
   const pointerFrameRef = useRef(0);
+  const rotationResumeRef = useRef(0);
+  const copyResetRef = useRef(0);
+  const hoveredProofRef = useRef<number | null>(null);
   const activeProof = PROOFS[activeIndex];
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
-    if (!autoRotate) return;
+    if (rotationPaused) return;
 
     const media = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (media.matches) return;
 
     const interval = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % PROOFS.length);
-    }, 5200);
+    }, ROTATION_INTERVAL_MS);
 
     return () => window.clearInterval(interval);
-  }, [autoRotate]);
+  }, [rotationPaused]);
 
   useEffect(() => {
-    return () => window.cancelAnimationFrame(pointerFrameRef.current);
+    return () => {
+      window.cancelAnimationFrame(pointerFrameRef.current);
+      window.clearTimeout(rotationResumeRef.current);
+      window.clearTimeout(copyResetRef.current);
+    };
   }, []);
 
   function updatePointer(event: ReactPointerEvent<HTMLElement>) {
@@ -200,9 +286,46 @@ export default function SignalRoom() {
     });
   }
 
-  function chooseProof(index: number) {
+  function holdProof(index: number) {
     setActiveIndex(index);
-    setAutoRotate(false);
+    setRotationPaused(true);
+    window.clearTimeout(rotationResumeRef.current);
+    rotationResumeRef.current = window.setTimeout(() => {
+      if (hoveredProofRef.current === null) {
+        setRotationPaused(false);
+      }
+    }, INTERACTION_PAUSE_MS);
+  }
+
+  function hoverProof(index: number) {
+    hoveredProofRef.current = index;
+    window.clearTimeout(rotationResumeRef.current);
+    setActiveIndex(index);
+    setRotationPaused(true);
+  }
+
+  function leaveProof(index: number) {
+    if (hoveredProofRef.current !== index) return;
+
+    hoveredProofRef.current = null;
+    window.clearTimeout(rotationResumeRef.current);
+    setRotationPaused(false);
+  }
+
+  async function copyEmail() {
+    window.clearTimeout(copyResetRef.current);
+    setCopyState('copying');
+
+    try {
+      await writeClipboard(EMAIL);
+      setCopyState('copied');
+    } catch {
+      setCopyState(fallbackCopy(EMAIL) ? 'copied' : 'failed');
+    }
+
+    copyResetRef.current = window.setTimeout(() => {
+      setCopyState('idle');
+    }, 1800);
   }
 
   return (
@@ -221,17 +344,23 @@ export default function SignalRoom() {
           <span>DAVID</span>
           <span>ERWIN</span>
         </a>
-        <p className="signal-header-role">
-          Software engineer
-          <span aria-hidden="true"> / </span>
-          Product · Data · AI
-        </p>
+        <div className="signal-header-role">
+          <span>Software engineer / Product · Data · AI</span>
+          <span className="signal-header-facts">
+            <span>Tampa, FL ↔ Prague, CZ</span>
+            <span>Native English</span>
+          </span>
+        </div>
         <div className="signal-header-actions">
           <span className="signal-status">
             <span className="signal-status-dot" aria-hidden="true" />
             US + CZ citizen
           </span>
-          <a className="signal-mini-link" href="/CVs.pdf" target="_blank">
+          <a
+            className="signal-mini-link"
+            href="/David-Erwin-CV.pdf"
+            target="_blank"
+          >
             CV <span aria-hidden="true">↗</span>
           </a>
         </div>
@@ -239,16 +368,16 @@ export default function SignalRoom() {
 
       <section id="top" className="signal-hero" aria-labelledby="signal-title">
         <div className="signal-coordinate signal-coordinate-left" aria-hidden="true">
-          50°05&apos;N / 14°26&apos;E
+          TAMPA / 27°56&apos;52&quot;N / 82°27&apos;26&quot;W
         </div>
         <div className="signal-coordinate signal-coordinate-right" aria-hidden="true">
-          CHANNEL 26 / LIVE
+          PRAGUE / 50°05&apos;19&quot;N / 14°25&apos;17&quot;E
         </div>
 
         <div className="signal-intro">
           <p className="signal-kicker">
             <span>Signal room</span>
-            <span>Portfolio / 2026</span>
+            <span suppressHydrationWarning>Portfolio / {currentYear}</span>
           </p>
 
           <KineticHeadline />
@@ -256,9 +385,9 @@ export default function SignalRoom() {
           <div className="signal-hero-foot">
             <TileBar />
             <p className="signal-summary">
-              Mastercard systems. CERN research. Independent products.
-              <br />
-              One engineer across the stack.
+              <span>Mastercard systems. CERN research.</span>
+              <span>Independent systems.</span>
+              <span>One engineer across the stack.</span>
             </p>
           </div>
         </div>
@@ -277,32 +406,51 @@ export default function SignalRoom() {
           </div>
           <figcaption>
             <span>Human / verified</span>
-            <span>Prague, CZ</span>
+            <span>Tampa / Prague</span>
           </figcaption>
         </figure>
 
-        <div className="signal-proof-selector" aria-label="Evidence selector">
-          {PROOFS.map((proof, index) => (
-            <button
-              key={proof.id}
-              type="button"
-              className="signal-proof-button"
-              data-active={index === activeIndex || undefined}
-              aria-pressed={index === activeIndex}
-              onClick={() => chooseProof(index)}
-              onPointerEnter={(event) => {
-                if (event.pointerType !== 'touch') chooseProof(index);
-              }}
-              onFocus={() => chooseProof(index)}
-            >
-              <span className="signal-proof-index">{proof.index}</span>
-              <span className="signal-proof-label">{proof.label}</span>
-              <span className="signal-proof-quip">{proof.quip}</span>
-              <span className="signal-proof-arrow" aria-hidden="true">
-                ↗
-              </span>
-            </button>
-          ))}
+        <div
+          className="signal-proof-selector"
+          aria-label="Evidence selector"
+          data-rotation-paused={rotationPaused || undefined}
+        >
+          {PROOFS.map((proof, index) => {
+            const interactionProps = {
+              className: 'signal-proof-button',
+              'data-active': index === activeIndex || undefined,
+              onClick: () => holdProof(index),
+              onPointerEnter: (event: ReactPointerEvent<HTMLElement>) => {
+                if (event.pointerType !== 'touch') hoverProof(index);
+              },
+              onPointerLeave: (event: ReactPointerEvent<HTMLElement>) => {
+                if (event.pointerType !== 'touch') leaveProof(index);
+              },
+              onFocus: () => holdProof(index),
+            };
+
+            return proof.href ? (
+              <a
+                key={proof.id}
+                {...interactionProps}
+                href={proof.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-current={index === activeIndex || undefined}
+              >
+                <ProofCardContent proof={proof} />
+              </a>
+            ) : (
+              <button
+                key={proof.id}
+                {...interactionProps}
+                type="button"
+                aria-pressed={index === activeIndex}
+              >
+                <ProofCardContent proof={proof} />
+              </button>
+            );
+          })}
         </div>
 
         <article className="signal-readout" data-proof={activeProof.id}>
@@ -356,6 +504,9 @@ export default function SignalRoom() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Open ${system.name}`}
+                  onClick={(event) => {
+                    if (event.detail > 0) event.currentTarget.blur();
+                  }}
                 >
                   ↗
                 </a>
@@ -380,17 +531,50 @@ export default function SignalRoom() {
         </p>
         <h2>Bring me the hard part.</h2>
         <div className="signal-footer-actions">
-          <a href="mailto:hello@daviderwin.me">hello@daviderwin.me</a>
-          <a href="/CVs.pdf" target="_blank">
+          <div className="signal-email-action">
+            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+            <button
+              type="button"
+              onClick={copyEmail}
+              data-copy-state={copyState}
+              aria-busy={copyState === 'copying'}
+              aria-label={
+                copyState === 'copied'
+                  ? 'Email address copied'
+                  : copyState === 'failed'
+                    ? 'Email address could not be copied'
+                    : copyState === 'copying'
+                      ? 'Copying email address'
+                    : 'Copy email address'
+              }
+            >
+              <CopyIcon copied={copyState === 'copied'} />
+            </button>
+            <span className="signal-copy-feedback" role="status">
+              {copyState === 'copied'
+                ? 'Email copied'
+                : copyState === 'failed'
+                  ? 'Copy failed'
+                  : ''}
+            </span>
+          </div>
+          <a href="/David-Erwin-CV.pdf" target="_blank">
             CV ↗
           </a>
           <a href="https://github.com/dawi369" target="_blank" rel="noreferrer">
             GitHub ↗
           </a>
+          <a
+            href="https://www.linkedin.com/in/david-erwin-cz68/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            LinkedIn ↗
+          </a>
         </div>
         <p className="signal-footer-meta">
           Designed and engineered by David Erwin
-          <span>© 2026</span>
+          <span suppressHydrationWarning>© {currentYear}</span>
         </p>
       </footer>
     </main>

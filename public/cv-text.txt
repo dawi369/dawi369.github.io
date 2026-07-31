@@ -1,0 +1,246 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{textcomp}
+\input{glyphtounicode}
+
+\hypersetup{
+  pdftitle={David Erwin - Software Engineer CV},
+  pdfauthor={David William Erwin},
+  pdfsubject={Software Engineer CV},
+  pdfkeywords={Software Engineer, TypeScript, React, .NET, Databricks}
+}
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.2in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-1pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-1pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\lot}[1]{\ensuremath{\overline{\mathbf{#1}}}}
+
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{document}
+
+%----------HEADING----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+  \textbf{\LARGE \scshape David William Erwin} \\ \vspace{4pt}
+  \small
+  \href{https://daviderwin.me}{\underline{daviderwin.me}} $|$
+  \href{mailto:hello@daviderwin.me}{\underline{hello@daviderwin.me}} $|$
+  \href{https://www.linkedin.com/in/david-erwin-cz68/}{\underline{LinkedIn}} $|$
+  U.S. \& Czech Citizen $|$ Native English
+\end{center}
+
+
+\vspace{-24pt} % Adjust this value to control the space below the header
+
+
+
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\vspace{-1mm}
+
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Software Engineer}{September 2025 -- Present}
+    {Mastercard}{Prague, Czech Republic}
+    \resumeItemListStart
+      \resumeItem{Built and shipped full-stack features for a unified platform with product and engineering teams, spanning React and TypeScript interfaces and .NET and C\# services backed by Databricks.}
+    
+      \resumeItem{Co-led a two-engineer team building Tourism Insights, a new product that replaced two legacy pipelines, expanded their capabilities, and transformed large-scale payment data into tourism and market intelligence across Asia, Europe, and the U.S.}
+
+      \resumeItem{Migrated SpendingPulse's near-real-time processing to Databricks Serverless, modernizing Spark and Delta Lake workflows to reduce operating costs and improve developer iteration.}
+
+      \resumeItem{Redesigned the e-commerce adjustment step in a core SpendingPulse pipeline with an idempotent design, improving execution speed, maintainability, and downstream economist review.}
+
+      \resumeItem{Built MCP servers for self-hosted infrastructure and supported cross-team on-call, triaging production incidents across unfamiliar dependencies and coordinating fixes with downstream teams.}
+
+      \resumeItem{Built innovation-week tools adopted by the team for statistical synthetic-data generation and automated documentation auditing across Confluence and source repositories.}
+    \resumeItemListEnd
+
+\vspace{2pt}
+
+  \resumeSubheading
+    {Software Engineer Trainee}{December 2024 -- April 2025}
+    {Valeo R\&D Center}{Prague, Czech Republic}
+    \resumeItemListStart
+      \resumeItem{Built internal workflow applications with Google Apps Script, automating cross-department processes worth an estimated \texteuro{}77,000 in annual time and cost savings.}
+    \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+% \vspace{-2mm}
+
+
+
+%-----------EDUCATION-----------
+\section{Education}
+  \resumeSubHeadingListStart
+ \resumeSubheading
+      {Czech Technical University (ČVUT)}{August 2022 -- June 2025}
+      {Bachelor of Science in Electrical Engineering and Computer Science} {Prague, Czech Republic}
+      \resumeItemListStart
+        \resumeItem{\href{https://repository.cern/records/1r0yx-syh45}{\underline{\textbf{Machine Learning Research Thesis | CERN ATLAS}}}} 
+        
+        \resumeItem{Developed a 1.2M-parameter Transformer classifier for rare Higgs boson signals in CERN ATLAS data, achieving an AUC of 0.804 and F1-score of 0.705. Built particle-specific preprocessing and regularization pipelines and interpreted predictions through self-attention aligned with physical observables.}
+        
+        % \resumeItem{Developed a Transformer-based classifier ($\approx$1.2M parameters) for rare Higgs boson signals in noisy high-energy physics datasets from CERN ATLAS, achieving an AUC of 0.804 and F1-score of 0.705. Engineered custom preprocessing pipeline with particle-specific feature scaling, applied advanced regularization techniques, and improved interpretability via self-attention visualization aligned with physical observables.}
+        % \resumeItem{\textbf{Relevant Courses:} Statistical Machine Learning, Pattern Recognition, Computer Architectures, Cybernetics, C Programming, Logic Systems and Processors, Quantum Computing, Probability and Statistics.}
+      \resumeItemListEnd
+  \resumeSubHeadingListEnd
+
+
+
+%-----------PROJECTS-----------
+\section{Projects}
+
+\vspace{-2mm}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {\href{https://github.com/dawi369/assistant-mk1}
+    {\underline{Assistant MK1 — Agent Operations Workbench}}}
+    {May 2026 -- Present}
+    {Next.js, TypeScript, WorkOS, Cloudflare Workers, D1, Durable Objects, LangGraph, Fly.io}{}
+
+    \begin{itemize}[label=\raisebox{0.15ex}{\scriptsize\textbullet}]
+      \resumeItem{Built a code-first agent workbench that makes durable runs, approvals, tool access, artifacts, and recovery inspectable outside the chat interface.}
+
+      \resumeItem{Designed a tenant-safe control plane across Vercel, Cloudflare, and Fly, with server-derived identity, policy-enforced tool execution, audit trails, and durable run history.}
+
+      \resumeItem{Implemented reusable agent packs, signed webhooks and schedules, failure alerts, and reconnect and retry workflows for safely operating long-running agents.}
+    \end{itemize}\vspace{-4pt}
+
+\resumeSubHeadingListEnd
+
+
+
+%-----------PROGRAMMING SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages}: Python, TypeScript, SQL, Kotlin, C\#, C \\
+    \textbf{Systems}: Control-plane architecture, API boundary design, event-driven systems, durable job orchestration \\
+    \textbf{Full-Stack}: React, Next.js, .NET, Expo, Redux, Tailwind CSS, Uniwind, Redis, Postgres \\
+    \textbf{Cloud \& DevOps}: AWS, Terraform, Cloudflare Workers, Docker, GitHub Actions, Tailscale, Fly.io, Railway \\
+    \textbf{Data / ML Tools}: Apache Spark, Databricks, PyTorch, Optuna, Pandas
+  }}
+\end{itemize}
+
+
+
+%-----------CERTIFICATES-----------
+\section{Certificates}
+
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \small\textbf{Databricks Certified Data Engineer Associate} $|$ \emph{Databricks Cloud}
+    & \small October 2024 \\
+
+  \small\textbf{Machine Learning Specialization} $|$ \emph{Stanford Online -- Andrew Ng}
+    & \small September 2024
+\end{tabular*}
+
+\vspace{-4pt}
+
+%-------------------------------------------
+\end{document}

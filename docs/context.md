@@ -26,9 +26,13 @@ instead of embedding colors in JSX.
   hover feedback are CSS-driven.
 - JavaScript only rotates the evidence selection and publishes pointer position as
   CSS custom properties.
-- Motion stops cycling when the visitor deliberately selects evidence.
+- Evidence rotates every ten seconds. Hover selects and holds that evidence for
+  as long as the pointer remains over the card; leaving starts a fresh cycle.
+  Focus or touch selection pauses rotation for six seconds.
 - `prefers-reduced-motion` resolves all information immediately and disables
   ambient scans.
+- Calendar years displayed by the interface are derived from the current date;
+  factual event dates remain authored content.
 
 ## Design constraints
 
