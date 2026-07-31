@@ -10,7 +10,7 @@ Technical context for agents working on this project.
 - **Package manager:** Bun
 - **Dependency policy:** direct and transitive packages must be at least seven
   days old; enforced by `bunfig.toml`
-- **Typography:** bundled SF Mono Regular and Semibold via `@font-face`
+- **Typography:** bundled SF Mono Regular and Semibold WOFF2 via `@font-face`
 
 ## Homepage
 

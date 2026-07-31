@@ -3,7 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url('/fonts/sf-mono/SF-Mono-Regular.otf') format('opentype');
+  src: url('/fonts/sf-mono/SF-Mono-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -11,7 +11,7 @@
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: url('/fonts/sf-mono/SF-Mono-Semibold.otf') format('opentype');
+  src: url('/fonts/sf-mono/SF-Mono-Semibold.woff2') format('woff2');
 }
 
 @property --active-signal {
