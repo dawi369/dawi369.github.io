@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Signal Lost — David Erwin"
+  description="The requested route could not be found."
+>
+  <main class="not-found-room">
+    <div class="not-found-grid" aria-hidden="true"></div>
+    <div class="not-found-scan" aria-hidden="true"></div>
+
+    <header class="not-found-header">
+      <a class="signal-brand" href="/" aria-label="Return to David Erwin home">
+        <span>DAVID</span>
+        <span>ERWIN</span>
+      </a>
+      <p>Tampa, FL ↔ Prague, CZ</p>
+      <span>HTTP / 404</span>
+    </header>
+
+    <section class="not-found-stage" aria-labelledby="not-found-title">
+      <p class="not-found-kicker">Route unresolved / signal interrupted</p>
+      <p class="not-found-number" aria-hidden="true">404</p>
+      <h1 id="not-found-title">
+        <span>Signal</span>
+        <span>lost.</span>
+      </h1>
+      <p class="not-found-copy">
+        This coordinate does not resolve in Tampa, Prague, or anywhere between.
+      </p>
+      <a class="not-found-return" href="/">
+        Return to signal room
+        <span aria-hidden="true">↙</span>
+      </a>
+    </section>
+
+    <div class="not-found-radar" aria-hidden="true">
+      <span></span>
+      <span></span>
+    </div>
+
+    <footer class="not-found-footer">
+      <span>TAMPA / 27°56'52"N / 82°27'26"W</span>
+      <span>PRAGUE / 50°05'19"N / 14°25'17"E</span>
+    </footer>
+  </main>
+</BaseLayout>

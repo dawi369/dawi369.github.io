@@ -4,17 +4,19 @@ Technical context for agents working on this project.
 
 ## Architecture
 
-- **Framework:** Next.js 15 App Router
+- **Framework:** Astro 7 static site
 - **Deployment:** GitHub Pages at `daviderwin.me`
-- **Rendering:** static export only
+- **Rendering:** static generation only; no React runtime or hydrated islands
 - **Package manager:** Bun
-- **Typography:** bundled SF Mono Regular and Semibold via `next/font/local`
+- **Dependency policy:** direct and transitive packages must be at least seven
+  days old; enforced by `bunfig.toml`
+- **Typography:** bundled SF Mono Regular and Semibold via `@font-face`
 
 ## Homepage
 
-`src/components/SignalRoom.tsx` owns the homepage content, evidence state, and
-pointer-position updates. The page has no server runtime and no animation
-dependency.
+`src/pages/index.astro` owns the homepage markup. `src/scripts/signal-room.ts`
+owns evidence state, clipboard behavior, and pointer-position updates. The page
+has no server runtime, UI framework runtime, or animation dependency.
 
 The active evidence item is represented by `data-focus` on the homepage root.
 CSS maps that state to `--active-signal`; components consume the semantic token
@@ -32,9 +34,8 @@ instead of embedding colors in JSX.
 - On fine-pointer devices, selecting a linked evidence card also opens its
   destination. On coarse-pointer devices, the cards only select evidence so the
   readout can be reviewed first; its explicit action link remains navigable.
-- Coarse-pointer, slow-update, and constrained devices resolve the same final
-  composition with high-paint cursor, scan, glyph, and ambient animations
-  disabled.
+- Mobile and constrained devices retain the complete visual and animation
+  system; performance work must not introduce device-based visual fallbacks.
 - `prefers-reduced-motion` resolves all information immediately and disables
   ambient scans.
 - Calendar years displayed by the interface are derived from the current date;
@@ -42,7 +43,7 @@ instead of embedding colors in JSX.
 
 ## Design constraints
 
-- All component colors come from semantic tokens in `src/app/globals.css`.
+- All component colors come from semantic tokens in `src/styles/global.css`.
 - One font family and two weights are used application-wide.
 - Layout spacing follows the project’s 4px scale.
 - Interactive elements include hover, active, and visible keyboard-focus states.

@@ -1,0 +1,76 @@
+---
+import { STACK } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/tech.css';
+
+const currentYear = new Date().getFullYear();
+const indexLabel = (index: number) => String(index + 1).padStart(2, '0');
+---
+
+<BaseLayout
+  title="Tech in Practice — David Erwin"
+  description="The product, native, agent, backend, operations, and data tools David Erwin uses in practice."
+>
+  <main class="tech-page">
+    <header class="tech-page-header">
+      <a href="/" aria-label="Return to home">DAVID / ERWIN</a>
+      <p>TECH / INDEX</p>
+      <a href="/">BACK TO SIGNAL <span aria-hidden="true">↙</span></a>
+    </header>
+
+    <section class="tech-page-hero" aria-labelledby="tech-page-title">
+      <p class="tech-page-kicker">TOOLS I USE / IN PRACTICE</p>
+      <div>
+        <h1 id="tech-page-title">Tech in practice.</h1>
+        <p>
+          Typed product code, native apps, agent systems, backend
+          infrastructure, and data work—the tools I actually use.
+        </p>
+      </div>
+    </section>
+
+    <div class="tech-page-summary" aria-label="Page summary">
+      <p><span>06</span> STACK GROUPS</p>
+      <p>FULL STACK / END TO END</p>
+    </div>
+
+    <section class="tech-stack-section" aria-labelledby="stack-title">
+      <header class="tech-content-heading">
+        <p>01 / THE STACK</p>
+        <h2 id="stack-title">What I work with.</h2>
+      </header>
+
+      <div class="tech-stack-grid">
+        {
+          STACK.map((group, index) => (
+            <article class="tech-stack-group">
+              <p>{indexLabel(index)}</p>
+              <div>
+                <h3>{group.title}</h3>
+                <ul aria-label={`${group.title} technologies`}>
+                  {group.items.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <footer class="tech-page-footer">
+      <p>DESIGNED AND ENGINEERED BY DAVID ERWIN</p>
+      <a href="/">RETURN HOME ↙</a>
+      <p>© <span data-current-year>{currentYear}</span></p>
+    </footer>
+  </main>
+
+  <script>
+    document
+      .querySelectorAll<HTMLElement>('[data-current-year]')
+      .forEach((node) => {
+        node.textContent = String(new Date().getFullYear());
+      });
+  </script>
+</BaseLayout>

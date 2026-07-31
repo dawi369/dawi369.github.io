@@ -1,0 +1,303 @@
+---
+import { PROOFS, SYSTEMS } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const EMAIL = 'hello@daviderwin.me';
+const currentYear = new Date().getFullYear();
+const tileWords = ['product', 'data', 'systems', 'ai'];
+const headlineLines = [
+  { text: 'I build software', accent: false },
+  { text: 'where almost right', accent: true },
+  { text: 'is still wrong.', accent: false },
+];
+
+let glyphIndex = 0;
+const renderedHeadline = headlineLines.map((line) => ({
+  ...line,
+  words: line.text.split(' ').map((word) => ({
+    text: word,
+    glyphs: [...word].map((glyph) => ({ glyph, index: glyphIndex++ })),
+  })),
+}));
+
+const activeProof = PROOFS[0];
+---
+
+<BaseLayout>
+  <main class="signal-room" data-focus={activeProof.id}>
+    <div class="signal-grid" aria-hidden="true"></div>
+    <div class="signal-scan" aria-hidden="true"></div>
+    <div class="signal-cursor-field" aria-hidden="true"></div>
+
+    <header class="signal-header">
+      <a class="signal-brand" href="#top" aria-label="David Erwin, home">
+        <span>DAVID</span>
+        <span>ERWIN</span>
+      </a>
+      <div class="signal-header-role">
+        <span>Software engineer / Product · Data · AI</span>
+        <span class="signal-header-facts">
+          <span>Tampa, FL ↔ Prague, CZ</span>
+          <span>Native English</span>
+        </span>
+      </div>
+      <div class="signal-header-actions">
+        <span class="signal-status">
+          <span class="signal-status-dot" aria-hidden="true"></span>
+          US + CZ citizen
+        </span>
+        <a
+          class="signal-mini-link"
+          href="/David-Erwin-CV.pdf"
+          target="_blank"
+        >
+          CV <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </header>
+
+    <section id="top" class="signal-hero" aria-labelledby="signal-title">
+      <div
+        class="signal-coordinate signal-coordinate-left"
+        aria-hidden="true"
+      >
+        TAMPA / 27°56'52"N / 82°27'26"W
+      </div>
+      <div
+        class="signal-coordinate signal-coordinate-right"
+        aria-hidden="true"
+      >
+        PRAGUE / 50°05'19"N / 14°25'17"E
+      </div>
+
+      <div class="signal-intro">
+        <p class="signal-kicker">
+          <span>Signal room</span>
+          <span>Portfolio / <span data-current-year>{currentYear}</span></span>
+        </p>
+
+        <h1
+          id="signal-title"
+          class="signal-headline"
+          aria-label="I build software where almost right is still wrong."
+        >
+          {
+            renderedHeadline.map((line) => (
+              <span
+                class="signal-headline-line"
+                data-accent={line.accent || undefined}
+                aria-hidden="true"
+              >
+                {line.words.map((word) => (
+                  <span class="signal-word">
+                    {word.glyphs.map(({ glyph, index }) => (
+                      <span
+                        class="signal-glyph"
+                        style={`--glyph-index: ${index}`}
+                      >
+                        {glyph}
+                      </span>
+                    ))}
+                  </span>
+                ))}
+              </span>
+            ))
+          }
+        </h1>
+
+        <div class="signal-hero-foot">
+          <p class="signal-tile-bar" aria-label="Product, data, systems, AI">
+            {
+              tileWords.map((word, index) => (
+                <span
+                  class={`signal-tile signal-tile-${index + 1}`}
+                  style={`--tile-index: ${index}`}
+                  aria-hidden="true"
+                >
+                  {word}
+                </span>
+              ))
+            }
+          </p>
+          <p class="signal-summary">
+            <span>Mastercard systems. CERN research.</span>
+            <span>Independent systems.</span>
+            <span>One engineer across the stack.</span>
+          </p>
+        </div>
+      </div>
+
+      <figure class="signal-portrait">
+        <div class="signal-portrait-image">
+          <img
+            src="/assets/images/chilling.jpg"
+            alt="David Erwin"
+            width="1200"
+            height="1600"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <div class="signal-portrait-sweep" aria-hidden="true"></div>
+          <div class="signal-portrait-crosshair" aria-hidden="true"></div>
+        </div>
+        <figcaption>
+          <span>Human / verified</span>
+          <span>Tampa / Prague</span>
+        </figcaption>
+      </figure>
+
+      <div class="signal-proof-selector" aria-label="Evidence selector">
+        {
+          PROOFS.map((proof, index) => (
+            <button
+              class="signal-proof-button"
+              type="button"
+              data-active={index === 0 || undefined}
+              aria-pressed={index === 0 ? 'true' : 'false'}
+            >
+              <span class="signal-proof-index">{proof.index}</span>
+              <span class="signal-proof-label">{proof.label}</span>
+              <span class="signal-proof-quip">{proof.quip}</span>
+              <span class="signal-proof-arrow" aria-hidden="true">
+                ↗
+              </span>
+            </button>
+          ))
+        }
+      </div>
+
+      <article class="signal-readout" data-proof={activeProof.id}>
+        <div class="signal-readout-top">
+          <span data-readout-eyebrow>{activeProof.eyebrow}</span>
+          <span data-readout-metric>{activeProof.metric}</span>
+        </div>
+        <p data-readout-detail>{activeProof.detail}</p>
+        <a
+          data-readout-action
+          target="_blank"
+          rel="noreferrer"
+          hidden
+        >
+          <span data-readout-action-label></span>
+          <span aria-hidden="true"> ↗</span>
+        </a>
+      </article>
+
+      <a class="signal-scroll-cue" href="#systems">
+        Inspect the systems
+        <span aria-hidden="true">↓</span>
+      </a>
+    </section>
+
+    <section
+      id="systems"
+      class="systems-section"
+      aria-labelledby="systems-title"
+    >
+      <div class="systems-heading">
+        <p>Selected systems / not a logo wall</p>
+        <h2 id="systems-title">
+          Four builds.
+          <br />
+          Four hard parts.
+        </h2>
+        <p class="systems-heading-note">
+          I work from interface to infrastructure, but the interesting part is
+          always the system in between.
+        </p>
+      </div>
+
+      <div class="systems-list">
+        {
+          SYSTEMS.map((system) => (
+            <article class="system-row">
+              <span class="system-index">{system.index}</span>
+              <div class="system-name">
+                <h3>{system.name}</h3>
+                <p>{system.type}</p>
+              </div>
+              <p class="system-line">{system.line}</p>
+              <p class="system-stack">{system.stack}</p>
+              {'href' in system ? (
+                <a
+                  class="system-link"
+                  href={system.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${system.name}`}
+                >
+                  ↗
+                </a>
+              ) : (
+                <span
+                  class="system-link system-link-disabled"
+                  aria-hidden="true"
+                >
+                  ·
+                </span>
+              )}
+            </article>
+          ))
+        }
+      </div>
+
+      <a class="systems-index-link" href="/tech/">
+        Open the full system index
+        <span aria-hidden="true"> ↗</span>
+      </a>
+    </section>
+
+    <footer class="signal-footer">
+      <p class="signal-footer-code" aria-hidden="true">
+        END_OF_SIGNAL / START_OF_CONVERSATION
+      </p>
+      <h2>Bring me the hard part.</h2>
+      <div class="signal-footer-actions">
+        <div class="signal-email-action">
+          <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+          <button
+            type="button"
+            data-copy-email
+            data-copy-state="idle"
+            aria-busy="false"
+            aria-label="Copy email address"
+          >
+            <svg data-copy-icon viewBox="0 0 20 20" aria-hidden="true">
+              <rect x="6.5" y="6.5" width="10" height="10" rx="2"></rect>
+              <path
+                d="M13.5 6.5V5.25A1.75 1.75 0 0 0 11.75 3.5h-6.5A1.75 1.75 0 0 0 3.5 5.25v6.5A1.75 1.75 0 0 0 5.25 13.5H6.5"
+              ></path>
+            </svg>
+            <svg
+              data-copied-icon
+              viewBox="0 0 20 20"
+              aria-hidden="true"
+              data-icon-hidden
+            >
+              <path d="m4.5 10.5 3.25 3.25L15.5 6"></path>
+            </svg>
+          </button>
+          <span class="signal-copy-feedback" role="status"></span>
+        </div>
+        <a href="/David-Erwin-CV.pdf" target="_blank">CV ↗</a>
+        <a href="https://github.com/dawi369" target="_blank" rel="noreferrer">
+          GitHub ↗
+        </a>
+        <a
+          href="https://www.linkedin.com/in/david-erwin-cz68/"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn ↗
+        </a>
+      </div>
+      <p class="signal-footer-meta">
+        Designed and engineered by David Erwin
+        <span>© <span data-current-year>{currentYear}</span></span>
+      </p>
+    </footer>
+  </main>
+
+  <script src="../scripts/signal-room.ts"></script>
+</BaseLayout>
