@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import {
+  memo,
   type CSSProperties,
   type PointerEvent as ReactPointerEvent,
   useEffect,
@@ -96,9 +97,15 @@ const SYSTEMS = [
 ];
 
 const TILE_WORDS = ['product', 'data', 'systems', 'ai'];
+const HEADLINE_LINES = [
+  { text: 'I build software', accent: false },
+  { text: 'where almost right', accent: true },
+  { text: 'is still wrong.', accent: false },
+] as const;
 const EMAIL = 'hello@daviderwin.me';
 const ROTATION_INTERVAL_MS = 10000;
 const INTERACTION_PAUSE_MS = 6000;
+const DESKTOP_PROOF_QUERY = '(hover: hover) and (pointer: fine)';
 
 type GlyphStyle = CSSProperties & {
   '--glyph-index': number;
@@ -149,13 +156,7 @@ function fallbackCopy(text: string) {
   return copied;
 }
 
-function KineticHeadline() {
-  const lines = [
-    { text: 'I build software', accent: false },
-    { text: 'where almost right', accent: true },
-    { text: 'is still wrong.', accent: false },
-  ];
-
+const KineticHeadline = memo(function KineticHeadline() {
   let glyphIndex = 0;
 
   return (
@@ -164,7 +165,7 @@ function KineticHeadline() {
       className="signal-headline"
       aria-label="I build software where almost right is still wrong."
     >
-      {lines.map((line) => (
+      {HEADLINE_LINES.map((line) => (
         <span
           key={line.text}
           className="signal-headline-line"
@@ -193,9 +194,9 @@ function KineticHeadline() {
       ))}
     </h1>
   );
-}
+});
 
-function TileBar() {
+const TileBar = memo(function TileBar() {
   return (
     <p className="signal-tile-bar" aria-label="Product, data, systems, AI">
       {TILE_WORDS.map((word, index) => (
@@ -210,9 +211,13 @@ function TileBar() {
       ))}
     </p>
   );
-}
+});
 
-function ProofCardContent({ proof }: { proof: Proof }) {
+const ProofCardContent = memo(function ProofCardContent({
+  proof,
+}: {
+  proof: Proof;
+}) {
   return (
     <>
       <span className="signal-proof-index">{proof.index}</span>
@@ -223,9 +228,9 @@ function ProofCardContent({ proof }: { proof: Proof }) {
       </span>
     </>
   );
-}
+});
 
-function CopyIcon({ copied }: { copied: boolean }) {
+const CopyIcon = memo(function CopyIcon({ copied }: { copied: boolean }) {
   return copied ? (
     <svg viewBox="0 0 20 20" aria-hidden="true">
       <path d="m4.5 10.5 3.25 3.25L15.5 6" />
@@ -236,7 +241,7 @@ function CopyIcon({ copied }: { copied: boolean }) {
       <path d="M13.5 6.5V5.25A1.75 1.75 0 0 0 11.75 3.5h-6.5A1.75 1.75 0 0 0 3.5 5.25v6.5A1.75 1.75 0 0 0 5.25 13.5H6.5" />
     </svg>
   );
-}
+});
 
 export default function SignalRoom() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -259,11 +264,57 @@ export default function SignalRoom() {
     if (media.matches) return;
 
     const interval = window.setInterval(() => {
+      if (document.hidden) return;
       setActiveIndex((current) => (current + 1) % PROOFS.length);
     }, ROTATION_INTERVAL_MS);
 
     return () => window.clearInterval(interval);
   }, [rotationPaused]);
+
+  useEffect(() => {
+    const finePointer = window.matchMedia(DESKTOP_PROOF_QUERY);
+    if (!finePointer.matches) return;
+
+    let pointerX = 50;
+    let pointerY = 50;
+
+    function updatePointer(event: PointerEvent) {
+      pointerX = (event.clientX / window.innerWidth) * 100;
+      pointerY = (event.clientY / window.innerHeight) * 100;
+
+      if (pointerFrameRef.current) return;
+
+      pointerFrameRef.current = window.requestAnimationFrame(() => {
+        roomRef.current?.style.setProperty('--pointer-x', `${pointerX}%`);
+        roomRef.current?.style.setProperty('--pointer-y', `${pointerY}%`);
+        pointerFrameRef.current = 0;
+      });
+    }
+
+    window.addEventListener('pointermove', updatePointer, { passive: true });
+
+    return () => {
+      window.removeEventListener('pointermove', updatePointer);
+      window.cancelAnimationFrame(pointerFrameRef.current);
+      pointerFrameRef.current = 0;
+    };
+  }, []);
+
+  useEffect(() => {
+    const capabilities = navigator as Navigator & {
+      deviceMemory?: number;
+      connection?: { saveData?: boolean };
+    };
+    const constrainedDevice =
+      capabilities.connection?.saveData === true ||
+      (typeof capabilities.deviceMemory === 'number' &&
+        capabilities.deviceMemory <= 4) ||
+      navigator.hardwareConcurrency <= 4;
+
+    if (constrainedDevice) {
+      roomRef.current?.setAttribute('data-lite-motion', '');
+    }
+  }, []);
 
   useEffect(() => {
     return () => {
@@ -272,19 +323,6 @@ export default function SignalRoom() {
       window.clearTimeout(copyResetRef.current);
     };
   }, []);
-
-  function updatePointer(event: ReactPointerEvent<HTMLElement>) {
-    if (event.pointerType === 'touch') return;
-
-    const x = (event.clientX / window.innerWidth) * 100;
-    const y = (event.clientY / window.innerHeight) * 100;
-
-    window.cancelAnimationFrame(pointerFrameRef.current);
-    pointerFrameRef.current = window.requestAnimationFrame(() => {
-      roomRef.current?.style.setProperty('--pointer-x', `${x}%`);
-      roomRef.current?.style.setProperty('--pointer-y', `${y}%`);
-    });
-  }
 
   function holdProof(index: number) {
     setActiveIndex(index);
@@ -312,6 +350,14 @@ export default function SignalRoom() {
     setRotationPaused(false);
   }
 
+  function selectProof(index: number, proof: Proof) {
+    holdProof(index);
+
+    if (!proof.href || !window.matchMedia(DESKTOP_PROOF_QUERY).matches) return;
+
+    window.open(proof.href, '_blank', 'noopener,noreferrer');
+  }
+
   async function copyEmail() {
     window.clearTimeout(copyResetRef.current);
     setCopyState('copying');
@@ -333,7 +379,6 @@ export default function SignalRoom() {
       ref={roomRef}
       className="signal-room"
       data-focus={activeProof.id}
-      onPointerMove={updatePointer}
     >
       <div className="signal-grid" aria-hidden="true" />
       <div className="signal-scan" aria-hidden="true" />
@@ -419,7 +464,7 @@ export default function SignalRoom() {
             const interactionProps = {
               className: 'signal-proof-button',
               'data-active': index === activeIndex || undefined,
-              onClick: () => holdProof(index),
+              onClick: () => selectProof(index, proof),
               onPointerEnter: (event: ReactPointerEvent<HTMLElement>) => {
                 if (event.pointerType !== 'touch') hoverProof(index);
               },
@@ -429,18 +474,7 @@ export default function SignalRoom() {
               onFocus: () => holdProof(index),
             };
 
-            return proof.href ? (
-              <a
-                key={proof.id}
-                {...interactionProps}
-                href={proof.href}
-                target="_blank"
-                rel="noreferrer"
-                aria-current={index === activeIndex || undefined}
-              >
-                <ProofCardContent proof={proof} />
-              </a>
-            ) : (
+            return (
               <button
                 key={proof.id}
                 {...interactionProps}

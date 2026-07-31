@@ -29,6 +29,12 @@ instead of embedding colors in JSX.
 - Evidence rotates every ten seconds. Hover selects and holds that evidence for
   as long as the pointer remains over the card; leaving starts a fresh cycle.
   Focus or touch selection pauses rotation for six seconds.
+- On fine-pointer devices, selecting a linked evidence card also opens its
+  destination. On coarse-pointer devices, the cards only select evidence so the
+  readout can be reviewed first; its explicit action link remains navigable.
+- Coarse-pointer, slow-update, and constrained devices resolve the same final
+  composition with high-paint cursor, scan, glyph, and ambient animations
+  disabled.
 - `prefers-reduced-motion` resolves all information immediately and disables
   ambient scans.
 - Calendar years displayed by the interface are derived from the current date;

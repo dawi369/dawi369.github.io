@@ -827,6 +827,8 @@ a:focus-visible {
   padding: 96px 24px 128px;
   background: var(--signal-ink);
   color: var(--signal-paper);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1000px;
 }
 
 .systems-section::before {
@@ -1047,6 +1049,68 @@ a:focus-visible {
   padding: 96px 24px 24px;
   background: var(--primary);
   color: var(--signal-ink);
+  content-visibility: auto;
+  contain-intrinsic-size: auto 640px;
+}
+
+.signal-room[data-lite-motion] {
+  transition: none;
+}
+
+.signal-room[data-lite-motion] .signal-cursor-field,
+.signal-room[data-lite-motion] .signal-scan {
+  display: none;
+}
+
+.signal-room[data-lite-motion] .signal-grid::before {
+  filter: none;
+  opacity: 0.1;
+  transition: none;
+}
+
+.signal-room[data-lite-motion] .signal-header {
+  background: color-mix(in srgb, var(--background) 96%, transparent);
+  backdrop-filter: none;
+}
+
+.signal-room[data-lite-motion] .signal-glyph {
+  animation: none;
+  background: transparent;
+  box-shadow: none;
+  color: var(--resolved-ink);
+  filter: none;
+  opacity: 1;
+  transform: none;
+}
+
+.signal-room[data-lite-motion] .signal-tile {
+  animation: none;
+  clip-path: none;
+  opacity: 1;
+  transform: none;
+}
+
+.signal-room[data-lite-motion] .signal-portrait-sweep,
+.signal-room[data-lite-motion] .signal-scroll-cue span,
+.signal-room[data-lite-motion] .signal-status-dot,
+.signal-room[data-lite-motion] .signal-footer::before {
+  animation: none;
+}
+
+.signal-room[data-lite-motion] .signal-portrait-sweep {
+  background-position: 0 50%;
+  opacity: 0.42;
+}
+
+.signal-room[data-lite-motion] .signal-proof-button[data-active]::after {
+  animation: none;
+  transform: scaleX(1);
+}
+
+.signal-room[data-lite-motion] .signal-readout[data-proof] {
+  animation: none;
+  opacity: 1;
+  transform: none;
 }
 
 .signal-footer::before,
@@ -2069,6 +2133,81 @@ a:focus-visible {
   .signal-footer-meta {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (hover: none), (pointer: coarse), (update: slow) {
+  .signal-room {
+    transition: none;
+  }
+
+  .signal-cursor-field,
+  .signal-scan {
+    display: none;
+  }
+
+  .signal-grid::before {
+    filter: none;
+    opacity: 0.1;
+    transition: none;
+  }
+
+  .signal-header {
+    background: color-mix(in srgb, var(--background) 96%, transparent);
+    backdrop-filter: none;
+  }
+
+  .signal-glyph {
+    animation: none;
+    background: transparent;
+    box-shadow: none;
+    color: var(--resolved-ink);
+    filter: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .signal-tile {
+    animation: none;
+    clip-path: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .signal-portrait-sweep,
+  .signal-scroll-cue span,
+  .signal-status-dot,
+  .signal-footer::before {
+    animation: none;
+  }
+
+  .signal-portrait-sweep {
+    background-position: 0 50%;
+    opacity: 0.42;
+  }
+
+  .signal-proof-button[data-active]::after {
+    animation: none;
+    transform: scaleX(1);
+  }
+
+  .signal-readout[data-proof] {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .signal-proof-button:hover:not([data-active]) {
+    z-index: auto;
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
+    transform: none;
+  }
+
+  .signal-proof-button:hover:not([data-active]) .signal-proof-index,
+  .signal-proof-button:hover:not([data-active]) .signal-proof-quip {
+    color: var(--text-secondary);
   }
 }
 
