@@ -19,7 +19,7 @@ export const PROOFS: readonly Proof[] = [
     label: 'Mastercard',
     eyebrow: 'Full stack / product',
     quip:
-      'Built ambitious products with teams across the stack—from data systems to user-facing software.',
+      'Built ambitious products with teams across the stack, from data systems to user-facing software.',
     detail:
       'Co-led Tourism Insights, a new product that replaced two legacy pipelines and expanded tourism and market intelligence across Asia, Europe, and the U.S. Migrated near-real-time processing to Databricks Serverless. Now I ship React and TypeScript interfaces alongside .NET and C# services for a unified platform, while building team-adopted tools for synthetic data and documentation health.',
     metric: 'TEAM / PLATFORM / DELIVERY',

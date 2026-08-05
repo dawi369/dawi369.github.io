@@ -35,3 +35,6 @@ yarn-error.log*
 
 # generated types
 *.tsbuildinfo
+
+# local source photography (optimized exports live in public/)
+/source-photos/

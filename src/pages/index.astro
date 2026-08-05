@@ -50,6 +50,7 @@ const activeProof = PROOFS[0];
           class="signal-mini-link"
           href="/David-Erwin-CV.pdf"
           target="_blank"
+          rel="noreferrer"
         >
           CV <span aria-hidden="true">↗</span>
         </a>
@@ -72,7 +73,7 @@ const activeProof = PROOFS[0];
 
       <div class="signal-intro">
         <p class="signal-kicker">
-          <span>Signal room</span>
+          <span>A personal website</span>
           <span>Portfolio / <span data-current-year>{currentYear}</span></span>
         </p>
 
@@ -128,24 +129,54 @@ const activeProof = PROOFS[0];
       </div>
 
       <figure class="signal-portrait">
-        <div class="signal-portrait-image">
-          <img
-            src="/assets/images/chilling.jpg"
-            alt="David Erwin"
-            width="462"
-            height="462"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-          <div class="signal-portrait-sweep" aria-hidden="true"></div>
-          <div class="signal-portrait-crosshair" aria-hidden="true"></div>
+        <div class="signal-portrait-deck">
+          <div
+            class="signal-portrait-card signal-portrait-card-back"
+            aria-hidden="true"
+          >
+            <img
+              src="/assets/images/chilling.jpg"
+              alt=""
+              width="462"
+              height="462"
+              decoding="async"
+            />
+          </div>
+          <div
+            class="signal-portrait-card signal-portrait-card-middle"
+            aria-hidden="true"
+          >
+            <img
+              src="/assets/images/hero/snowboard.jpg"
+              alt=""
+              width="322"
+              height="720"
+              decoding="async"
+            />
+          </div>
+          <div class="signal-portrait-card signal-portrait-card-primary">
+            <img
+              src="/assets/images/hero/festival.jpg"
+              alt="David Erwin smiling at a festival in Prague"
+              width="720"
+              height="480"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+            />
+            <div class="signal-portrait-shine" aria-hidden="true"></div>
+          </div>
         </div>
         <figcaption>
-          <span>Human / verified</span>
+          <span>David Erwin</span>
           <span>Tampa / Prague</span>
         </figcaption>
       </figure>
+
+      <a class="signal-life-cue" href="#field-notes">
+        Life outside work
+        <span aria-hidden="true">↓</span>
+      </a>
 
       <div class="signal-proof-selector" aria-label="Evidence selector">
         {
@@ -196,14 +227,14 @@ const activeProof = PROOFS[0];
       aria-labelledby="systems-title"
     >
       <div class="systems-heading">
-        <p>Selected systems / not a logo wall</p>
+        <p>Selected systems</p>
         <h2 id="systems-title">
           Four builds.
           <br />
           Four hard parts.
         </h2>
         <p class="systems-heading-note">
-          I work from interface to infrastructure, but the interesting part is
+          I work from interface to infra, but the interesting part is
           always the system in between.
         </p>
       </div>
@@ -248,9 +279,96 @@ const activeProof = PROOFS[0];
       </a>
     </section>
 
+    <section
+      id="field-notes"
+      class="life-section"
+      aria-labelledby="life-title"
+    >
+      <div class="life-heading">
+        <p>Life outside work</p>
+        <h2 id="life-title">
+          When my laptop
+          <br />
+          is closed.
+        </h2>
+        <p class="life-heading-note">
+          Ice hockey, FPV drones, and anything that gets me out on the snow or
+          water. I also keep an eye out for a good hackathon. When the body is
+          tired, I like to learn guitar and practice my Czech.
+        </p>
+      </div>
+
+      <div class="life-board" aria-label="Life outside work photos">
+        <figure class="life-frame life-frame-occupied life-frame-slot-1">
+          <div class="life-frame-media">
+            <img
+              src="/assets/images/life/graduation.jpg"
+              alt="David Erwin holding his diploma in Prague"
+              width="750"
+              height="1000"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <figcaption>
+            <span>Graduation day</span>
+            <span>Prague / 2026</span>
+          </figcaption>
+        </figure>
+        <figure class="life-frame life-frame-occupied life-frame-slot-2">
+          <div class="life-frame-media">
+            <img
+              src="/assets/images/life/hockey.jpg"
+              alt="David Erwin with his ice hockey team after a game"
+              width="1200"
+              height="1199"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <figcaption>
+            <span>Ice hockey</span>
+            <span>Team photo</span>
+          </figcaption>
+        </figure>
+        <figure class="life-frame life-frame-occupied life-frame-slot-3">
+          <div class="life-frame-media">
+            <img
+              src="/assets/images/life/wakeboard.jpg"
+              alt="David Erwin wakeboarding over the water"
+              width="600"
+              height="1167"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <figcaption>
+            <span>Wakeboarding</span>
+            <span>On the water</span>
+          </figcaption>
+        </figure>
+        <figure class="life-frame life-frame-occupied life-frame-slot-4">
+          <div class="life-frame-media">
+            <img
+              src="/assets/images/life/family.jpg"
+              alt="David Erwin at dinner with his family"
+              width="1200"
+              height="858"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <figcaption>
+            <span>Family dinner</span>
+            <span>A good night</span>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
     <footer class="signal-footer">
       <p class="signal-footer-code" aria-hidden="true">
-        END_OF_SIGNAL / START_OF_CONVERSATION
+        HAPPY TO TALK
       </p>
       <h2>Bring me the hard part.</h2>
       <div class="signal-footer-actions">
@@ -280,7 +398,9 @@ const activeProof = PROOFS[0];
           </button>
           <span class="signal-copy-feedback" role="status"></span>
         </div>
-        <a href="/David-Erwin-CV.pdf" target="_blank">CV ↗</a>
+        <a href="/David-Erwin-CV.pdf" target="_blank" rel="noreferrer">
+          CV ↗
+        </a>
         <a href="https://github.com/dawi369" target="_blank" rel="noreferrer">
           GitHub ↗
         </a>
