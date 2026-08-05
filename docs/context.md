@@ -46,8 +46,9 @@ instead of embedding colors in JSX.
 - On fine-pointer devices, selecting a linked evidence card also opens its
   destination. On coarse-pointer devices, the cards only select evidence so the
   readout can be reviewed first; its explicit action link remains navigable.
-- Mobile and constrained devices retain the complete visual and animation
-  system; performance work must not introduce device-based visual fallbacks.
+- Mobile retains the same layout, imagery, color states, and entrance rhythm,
+  while paint-heavy blur, scan, foil, and box-shadow animations are replaced by
+  lighter static or grouped treatments below 900px.
 - `prefers-reduced-motion` resolves all information immediately and disables
   ambient scans.
 - Calendar years displayed by the interface are derived from the current date;

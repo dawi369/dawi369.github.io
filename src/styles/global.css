@@ -1972,6 +1972,13 @@ img {
   }
 }
 
+@keyframes signal-portrait-mobile-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(2deg);
+  }
+}
+
 @keyframes signal-card-shine {
   0%,
   68% {
@@ -2122,6 +2129,66 @@ img {
 
   .signal-portrait:hover .signal-portrait-card-primary img {
     transform: scale(1);
+  }
+}
+
+@media (max-width: 900px) {
+  .signal-room {
+    transition: none;
+  }
+
+  .signal-scan,
+  .signal-cursor-field,
+  .signal-portrait-shine,
+  .not-found-scan {
+    display: none;
+  }
+
+  .signal-grid::before {
+    filter: none;
+    opacity: 0.1;
+    transition: none;
+  }
+
+  .signal-header {
+    background: color-mix(in srgb, var(--background) 96%, transparent);
+    backdrop-filter: none;
+  }
+
+  .signal-headline {
+    opacity: 0;
+    transform: translateY(16px);
+    animation: signal-fade-up 560ms cubic-bezier(0.16, 1, 0.3, 1) 420ms
+      forwards;
+  }
+
+  .signal-glyph {
+    background: transparent;
+    box-shadow: none;
+    color: var(--resolved-ink);
+    filter: none;
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .signal-portrait {
+    animation: signal-portrait-mobile-enter 640ms
+      cubic-bezier(0.16, 1, 0.3, 1) 760ms forwards;
+  }
+
+  .signal-readout[data-proof='mastercard'],
+  .signal-readout[data-proof='cern'],
+  .signal-readout[data-proof='t23'] {
+    animation-name: signal-fade-up;
+    animation-duration: 640ms;
+    animation-delay: 2020ms;
+    animation-fill-mode: forwards;
+  }
+
+  .signal-footer::before,
+  .not-found-radar {
+    animation: none;
   }
 }
 
