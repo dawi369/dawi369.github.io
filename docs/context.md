@@ -48,7 +48,11 @@ instead of embedding colors in JSX.
   readout can be reviewed first; its explicit action link remains navigable.
 - Mobile retains the same layout, imagery, color states, and entrance rhythm,
   while paint-heavy blur, scan, foil, and box-shadow animations are replaced by
-  lighter static or grouped treatments below 900px.
+  a word-level headline reveal, static lighting, and a short portrait press
+  response below 900px.
+- Hover-only evidence styling is limited to fine-pointer devices. Touch devices
+  paint only the selected evidence card, preventing stale hover and transition
+  states from presenting two active cards.
 - `prefers-reduced-motion` resolves all information immediately and disables
   ambient scans.
 - Calendar years displayed by the interface are derived from the current date;

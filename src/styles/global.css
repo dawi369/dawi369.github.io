@@ -796,7 +796,6 @@ img {
   border-radius: 0 var(--radius) var(--radius) 0;
 }
 
-.signal-proof-button:hover,
 .signal-proof-button[data-active] {
   z-index: 1;
   background: var(--active-signal);
@@ -815,8 +814,7 @@ img {
   font-size: 10px;
 }
 
-.signal-proof-button[data-active] .signal-proof-index,
-.signal-proof-button:hover .signal-proof-index {
+.signal-proof-button[data-active] .signal-proof-index {
   color: var(--signal-ink);
 }
 
@@ -835,8 +833,7 @@ img {
   line-height: 1.5;
 }
 
-.signal-proof-button[data-active] .signal-proof-quip,
-.signal-proof-button:hover .signal-proof-quip {
+.signal-proof-button[data-active] .signal-proof-quip {
   color: var(--signal-ink);
 }
 
@@ -2114,6 +2111,20 @@ img {
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .signal-proof-button:hover {
+    z-index: 1;
+    background: var(--active-signal);
+    color: var(--signal-ink);
+    text-decoration: none;
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-float);
+  }
+
+  .signal-proof-button:hover .signal-proof-index,
+  .signal-proof-button:hover .signal-proof-quip {
+    color: var(--signal-ink);
+  }
+
   .signal-portrait:hover .signal-portrait-card-back {
     transform: translate(-12px, -4px) rotate(-7deg);
   }
@@ -2156,10 +2167,16 @@ img {
   }
 
   .signal-headline {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+
+  .signal-word {
     opacity: 0;
-    transform: translateY(16px);
-    animation: signal-fade-up 560ms cubic-bezier(0.16, 1, 0.3, 1) 420ms
-      forwards;
+    transform: translateY(12px);
+    animation: signal-fade-up 440ms cubic-bezier(0.16, 1, 0.3, 1)
+      calc(360ms + var(--word-index) * 36ms) forwards;
   }
 
   .signal-glyph {
@@ -2189,6 +2206,42 @@ img {
   .signal-footer::before,
   .not-found-radar {
     animation: none;
+  }
+}
+
+@media (max-width: 900px) and (pointer: coarse) {
+  .signal-proof-button {
+    transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .signal-portrait-card,
+  .signal-portrait-card-primary img,
+  .signal-portrait-card-primary::after {
+    transition-duration: 160ms;
+  }
+
+  .signal-portrait-card-primary::after {
+    transition-property: opacity;
+  }
+
+  .signal-portrait:active .signal-portrait-card-back {
+    transform: translate(4px, 2px) rotate(-3deg) scale(0.98);
+  }
+
+  .signal-portrait:active .signal-portrait-card-middle {
+    transform: translate(3px, 2px) rotate(2deg) scale(0.985);
+  }
+
+  .signal-portrait:active .signal-portrait-card-primary {
+    transform: translateY(3px) scale(0.985);
+  }
+
+  .signal-portrait:active .signal-portrait-card-primary img {
+    transform: scale(1.01);
+  }
+
+  .signal-portrait:active .signal-portrait-card-primary::after {
+    opacity: 0.78;
   }
 }
 
@@ -2287,7 +2340,6 @@ img {
     padding: 12px;
   }
 
-  .signal-proof-button:hover,
   .signal-proof-button[data-active] {
     transform: translateY(-4px);
   }

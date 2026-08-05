@@ -12,10 +12,12 @@ const headlineLines = [
 ];
 
 let glyphIndex = 0;
+let wordIndex = 0;
 const renderedHeadline = headlineLines.map((line) => ({
   ...line,
   words: line.text.split(' ').map((word) => ({
     text: word,
+    index: wordIndex++,
     glyphs: [...word].map((glyph) => ({ glyph, index: glyphIndex++ })),
   })),
 }));
@@ -90,7 +92,10 @@ const activeProof = PROOFS[0];
                 aria-hidden="true"
               >
                 {line.words.map((word) => (
-                  <span class="signal-word">
+                  <span
+                    class="signal-word"
+                    style={`--word-index: ${word.index}`}
+                  >
                     {word.glyphs.map(({ glyph, index }) => (
                       <span
                         class="signal-glyph"
