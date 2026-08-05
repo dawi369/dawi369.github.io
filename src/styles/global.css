@@ -751,12 +751,16 @@ img {
   border-right: 1px solid var(--border);
   border-radius: 0;
   background: transparent;
-  cursor: pointer;
+  cursor: default;
   text-align: left;
   transition:
     background 220ms ease,
     color 220ms ease,
     transform 220ms ease;
+}
+
+.signal-proof-button[data-linked] {
+  cursor: pointer;
 }
 
 .signal-proof-button::after {

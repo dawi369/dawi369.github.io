@@ -185,14 +185,19 @@ const activeProof = PROOFS[0];
               class="signal-proof-button"
               type="button"
               data-active={index === 0 || undefined}
+              data-linked={proof.href ? true : undefined}
               aria-pressed={index === 0 ? 'true' : 'false'}
             >
               <span class="signal-proof-index">{proof.index}</span>
               <span class="signal-proof-label">{proof.label}</span>
               <span class="signal-proof-quip">{proof.quip}</span>
-              <span class="signal-proof-arrow" aria-hidden="true">
-                ↗
-              </span>
+              {
+                proof.href && (
+                  <span class="signal-proof-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                )
+              }
             </button>
           ))
         }
